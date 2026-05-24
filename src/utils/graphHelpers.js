@@ -64,6 +64,7 @@ export function generateGraph(parsedEdges) {
 
       data: {
         label: nodeId,
+        type: "normal",
       },
 
       style: {
