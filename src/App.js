@@ -83,6 +83,85 @@ function handleRunGraphBFS(
     );
 
   console.log(result);
+  updateNodeType(
+  startNode,
+  "start"
+);
+
+updateNodeType(
+  endNode,
+  "end"
+);
+
+result.visitedOrder.forEach(
+  (nodeId, index) => {
+
+    setTimeout(() => {
+
+      if (
+        nodeId !== startNode &&
+        nodeId !== endNode
+      ) {
+
+        updateNodeType(
+          nodeId,
+          "visited"
+        );
+      }
+
+    }, index * 700);
+  }
+);
+
+setTimeout(() => {
+
+  result.shortestPath.forEach(
+    (nodeId, index) => {
+
+      setTimeout(() => {
+
+        if (
+          nodeId !== startNode &&
+          nodeId !== endNode
+        ) {
+
+          updateNodeType(
+            nodeId,
+            "path"
+          );
+        }
+
+      }, index * 700);
+
+    }
+  );
+
+}, result.visitedOrder.length * 700);
+}
+
+function updateNodeType(
+  nodeId,
+  type
+) {
+
+  setNodes((prevNodes) =>
+
+    prevNodes.map((node) =>
+
+      node.id === nodeId
+
+        ? {
+            ...node,
+
+            data: {
+              ...node.data,
+              type,
+            },
+          }
+
+        : node
+    )
+  );
 }
   return (
     <div style={{ textAlign: "center" }}>
