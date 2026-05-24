@@ -100,3 +100,29 @@ export function generateGraph(parsedEdges) {
     edges,
   };
 }
+
+export function buildAdjacencyList(parsedEdges) {
+
+  const graph = {};
+
+  parsedEdges.forEach((edge) => {
+
+    const { source, target } = edge;
+
+    if (!graph[source]) {
+      graph[source] = [];
+    }
+
+    graph[source].push(target);
+
+    // UNDIRECTED GRAPH
+
+    if (!graph[target]) {
+      graph[target] = [];
+    }
+
+    graph[target].push(source);
+  });
+
+  return graph;
+}
