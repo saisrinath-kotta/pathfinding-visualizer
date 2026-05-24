@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./App.css";
 
 import { bfs } from "./algorithms/bfs";
+import { bfsGraph } from "./algorithms/bfsGraph";
 
 import Grid from "./components/Grid";
 
@@ -12,7 +13,10 @@ import GraphInput from "./components/Graph/GraphInput";
 
 import { parseGraphInput } from "./utils/parseGraphInput";
 
-import { generateGraph }
+import {
+  generateGraph,
+  buildAdjacencyList
+}
 from "./utils/graphHelpers";
 
 function App() {
@@ -58,6 +62,28 @@ function App() {
 
   setEdges(edges);
 }
+
+function handleRunGraphBFS(
+  input,
+  startNode,
+  endNode
+) {
+
+  const parsedEdges =
+    parseGraphInput(input);
+
+  const graph =
+    buildAdjacencyList(parsedEdges);
+
+  const result =
+    bfsGraph(
+      graph,
+      startNode,
+      endNode
+    );
+
+  console.log(result);
+}
   return (
     <div style={{ textAlign: "center" }}>
 
@@ -81,8 +107,9 @@ function App() {
       {/* ---------------- GRAPH VISUALIZER ---------------- */}
 
       <GraphInput
-        onGenerate={handleGenerateGraph}
-      />
+  onGenerate={handleGenerateGraph}
+  onRunBFS={handleRunGraphBFS}
+/>
 
       <GraphVisualizer
         nodes={nodes}
