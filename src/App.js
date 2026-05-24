@@ -1,9 +1,24 @@
 import { useState } from "react";
+
 import "./App.css";
+
 import { bfs } from "./algorithms/bfs";
+
 import Grid from "./components/Grid";
 
+import GraphVisualizer from "./components/Graph/GraphVisualizer";
+
+import GraphInput from "./components/Graph/GraphInput";
+
+import { parseGraphInput } from "./utils/parseGraphInput";
+
+import { generateGraph }
+from "./utils/graphHelpers";
+
 function App() {
+
+  // ---------------- GRID STATES ----------------
+
   const [path, setPath] = useState([]);
 
   const grid = [
@@ -13,21 +28,67 @@ function App() {
   ];
 
   const start = { row: 0, col: 0 };
+
   const end = { row: 2, col: 2 };
 
   function runBFS() {
+
     const result = bfs(grid, start, end);
+
     setPath(result);
   }
 
+  // ---------------- GRAPH STATES ----------------
+
+  const [nodes, setNodes] = useState([]);
+
+  const [edges, setEdges] = useState([]);
+
+  function handleGenerateGraph(input) {
+
+  const parsedEdges =
+    parseGraphInput(input);
+
+  const {
+    nodes,
+    edges
+  } = generateGraph(parsedEdges);
+
+  setNodes(nodes);
+
+  setEdges(edges);
+}
   return (
     <div style={{ textAlign: "center" }}>
+
       <h1>Pathfinding Visualizer</h1>
-      <p>Click cells to create walls. We will find path using BFS.</p>
 
-      <button onClick={runBFS}>Find Path</button>
+      {/* ---------------- GRID VISUALIZER ---------------- */}
 
-      <Grid grid={grid} path={path} />
+      <p>
+        Click cells to create walls.
+      </p>
+
+      <button onClick={runBFS}>
+        Find Path
+      </button>
+
+      <Grid
+        grid={grid}
+        path={path}
+      />
+
+      {/* ---------------- GRAPH VISUALIZER ---------------- */}
+
+      <GraphInput
+        onGenerate={handleGenerateGraph}
+      />
+
+      <GraphVisualizer
+        nodes={nodes}
+        edges={edges}
+      />
+
     </div>
   );
 }
