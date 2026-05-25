@@ -16,8 +16,9 @@ import { parseGraphInput } from "./utils/parseGraphInput";
 import {
   generateGraph,
   buildAdjacencyList
-}
-from "./utils/graphHelpers";
+} from "./utils/graphHelpers";
+
+import { dfsGraph } from "./algorithms/dfsGraph";
 
 function App() {
 
@@ -139,6 +140,89 @@ setTimeout(() => {
 }, result.visitedOrder.length * 500);
 }
 
+function handleRunGraphDFS(
+  input,
+  startNode,
+  endNode
+) {
+
+  const parsedEdges =
+    parseGraphInput(input);
+
+  const graph =
+    buildAdjacencyList(parsedEdges);
+
+  resetGraphStyles();
+
+  const result =
+    dfsGraph(
+      graph,
+      startNode,
+      endNode
+    );
+
+  console.log(result);
+
+  updateNodeType(
+    startNode,
+    "start"
+  );
+
+  updateNodeType(
+    endNode,
+    "end"
+  );
+
+  // VISITED ANIMATION
+
+  result.visitedOrder.forEach(
+    (nodeId, index) => {
+
+      setTimeout(() => {
+
+        if (
+          nodeId !== startNode &&
+          nodeId !== endNode
+        ) {
+
+          updateNodeType(
+            nodeId,
+            "visited"
+          );
+        }
+
+      }, index * 500);
+    }
+  );
+
+  // PATH ANIMATION
+
+  setTimeout(() => {
+
+    result.shortestPath.forEach(
+      (nodeId, index) => {
+
+        setTimeout(() => {
+
+          if (
+            nodeId !== startNode &&
+            nodeId !== endNode
+          ) {
+
+            updateNodeType(
+              nodeId,
+              "path"
+            );
+          }
+
+        }, index * 500);
+
+      }
+    );
+
+  }, result.visitedOrder.length * 500);
+}
+
 function updateNodeType(
   nodeId,
   type
@@ -206,6 +290,7 @@ function resetGraphStyles() {
       <GraphInput
   onGenerate={handleGenerateGraph}
   onRunBFS={handleRunGraphBFS}
+  onRunDFS={handleRunGraphDFS}
 />
 
       <GraphVisualizer

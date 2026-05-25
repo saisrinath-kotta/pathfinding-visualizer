@@ -3,6 +3,7 @@ import { useState } from "react";
 function GraphInput({
   onGenerate,
   onRunBFS,
+  onRunDFS,
 }) {
 
   const [input, setInput] = useState("");
@@ -20,6 +21,15 @@ function GraphInput({
   function handleRunBFS() {
 
     onRunBFS(
+      input,
+      startNode,
+      endNode
+    );
+  }
+
+  function handleRunDFS() {
+
+    onRunDFS(
       input,
       startNode,
       endNode
@@ -77,6 +87,13 @@ function GraphInput({
         style={{ marginLeft: "10px" }}
       >
         Run BFS
+      </button>
+
+      <button
+        onClick={handleRunDFS}
+        style={{ marginLeft: "10px" }}
+      >
+        Run DFS
       </button>
 
     </div>
