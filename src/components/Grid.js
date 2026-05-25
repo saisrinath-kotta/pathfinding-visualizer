@@ -1,144 +1,337 @@
 import { useState } from "react";
+import { bfsGrid } from "../algorithms/bfsGrid";
 
 function Grid() {
+
   const rows = 10;
   const cols = 10;
 
+  // ---------------- GRID STATE ----------------
+
   const [grid, setGrid] = useState(
-    Array(rows).fill().map(() => Array(cols).fill("empty"))
+    Array(rows)
+      .fill()
+      .map(() => Array(cols).fill("empty"))
   );
 
+  const [isAnimating, setIsAnimating] =
+    useState(false);
+
+  // ---------------- WALL HANDLING ----------------
+
   const handleClick = (i, j) => {
-    const newGrid = grid.map(row => [...row]);
+
+    if (isAnimating) return;
+
+    const newGrid =
+      grid.map((row) => [...row]);
+
+    // DO NOT ALLOW WALLS ON START/END
+
+    if (
+      newGrid[i][j] === "start" ||
+      newGrid[i][j] === "end"
+    ) {
+      return;
+    }
+
+    // TOGGLE WALL
 
     if (newGrid[i][j] === "empty") {
       newGrid[i][j] = "wall";
-    } else if (newGrid[i][j] === "wall") {
+    }
+    else if (newGrid[i][j] === "wall") {
       newGrid[i][j] = "empty";
     }
 
     setGrid(newGrid);
   };
 
+  // ---------------- START NODE ----------------
+
   const setStart = (i, j) => {
-    const newGrid = grid.map(row => row.map(cell => cell === "start" ? "empty" : cell));
+
+    if (isAnimating) return;
+
+    const newGrid = grid.map((row) =>
+      row.map((cell) =>
+        cell === "start"
+          ? "empty"
+          : cell
+      )
+    );
+
     newGrid[i][j] = "start";
+
     setGrid(newGrid);
   };
+
+  // ---------------- END NODE ----------------
 
   const setEnd = (i, j) => {
-    const newGrid = grid.map(row => row.map(cell => cell === "end" ? "empty" : cell));
+
+    if (isAnimating) return;
+
+    const newGrid = grid.map((row) =>
+      row.map((cell) =>
+        cell === "end"
+          ? "empty"
+          : cell
+      )
+    );
+
     newGrid[i][j] = "end";
+
     setGrid(newGrid);
   };
 
+  // ---------------- RUN BFS ----------------
+
   const runBFS = () => {
-  let start = null;
-  let end = null;
 
-  // find start and end
-  for (let i = 0; i < rows; i++) {
-    for (let j = 0; j < cols; j++) {
-      if (grid[i][j] === "start") start = [i, j];
-      if (grid[i][j] === "end") end = [i, j];
-    }
-  }
+    let start = null;
+    let end = null;
 
-  if (!start || !end) {
-    alert("Set start and end first!");
-    return;
-  }
+    // FIND START + END
 
-  let visited = Array(rows).fill().map(() => Array(cols).fill(false));
-  let parent = Array(rows).fill().map(() => Array(cols).fill(null));
+    for (let i = 0; i < rows; i++) {
 
-  let queue = [];
-  queue.push(start);
-  visited[start[0]][start[1]] = true;
+      for (let j = 0; j < cols; j++) {
 
-  let directions = [[1,0], [-1,0], [0,1], [0,-1]];
+        if (grid[i][j] === "start") {
+          start = [i, j];
+        }
 
- while (queue.length > 0) {
-  let [x, y] = queue.shift();
-
-  if (x === end[0] && y === end[1]) break;
-
-  for (let [dx, dy] of directions) {
-    let nx = x + dx;
-    let ny = y + dy;
-
-    if (
-      nx >= 0 && ny >= 0 &&
-      nx < rows && ny < cols &&
-      !visited[nx][ny] &&
-      grid[nx][ny] !== "wall"
-    ) {
-
-      visited[nx][ny] = true;
-      parent[nx][ny] = [x, y];
-
-      queue.push([nx, ny]);
-
-      if (grid[nx][ny] !== "end") {
-        grid[nx][ny] = "visited";
+        if (grid[i][j] === "end") {
+          end = [i, j];
+        }
       }
     }
-  }
-}
 
-  // build path
-  let path = [];
-  let curr = end;
+    // VALIDATION
 
-  while (curr) {
-    path.push(curr);
-    curr = parent[curr[0]][curr[1]];
-  }
+    if (!start || !end) {
 
-  // show path
-  const newGrid = [...grid];
+      alert("Set start and end first!");
 
-  path.forEach(([i, j], index) => {
-  setTimeout(() => {
-    if (newGrid[i][j] !== "start" && newGrid[i][j] !== "end") {
-      newGrid[i][j] = "path";
-      setGrid([...newGrid]);
+      return;
     }
-  }, index * 50);
-});
 
-  setGrid(newGrid);
-};
+    // CLEAR OLD PATH
+
+    clearPath();
+
+    // LOCK INTERACTION
+
+    setIsAnimating(true);
+
+    // RUN BFS
+
+    const result =
+      bfsGrid(grid, start, end);
+
+    // START ANIMATION
+
+    animateVisited(
+      result.visitedOrder,
+      result.shortestPath
+    );
+  };
+
+  // ---------------- VISUALIZATION ----------------
+
+  const animateVisited = (
+    visitedOrder,
+    shortestPath
+  ) => {
+
+    const newGrid =
+      grid.map((row) => [...row]);
+
+    // VISITED ANIMATION
+
+    visitedOrder.forEach(
+      ([i, j], index) => {
+
+        setTimeout(() => {
+
+          if (
+            newGrid[i][j] !== "start" &&
+            newGrid[i][j] !== "end"
+          ) {
+
+            newGrid[i][j] = "visited";
+
+            setGrid(
+              newGrid.map((row) => [...row])
+            );
+          }
+
+        }, index * 100);
+      }
+    );
+
+    // PATH ANIMATION
+
+    setTimeout(() => {
+
+      shortestPath.forEach(
+        ([i, j], index) => {
+
+          setTimeout(() => {
+
+            if (
+              newGrid[i][j] !== "start" &&
+              newGrid[i][j] !== "end"
+            ) {
+
+              newGrid[i][j] = "path";
+
+              setGrid(
+                newGrid.map((row) => [...row])
+              );
+            }
+
+          }, index * 100);
+        }
+      );
+
+    }, visitedOrder.length * 100);
+
+    // UNLOCK AFTER ANIMATION
+
+    setTimeout(() => {
+
+      setIsAnimating(false);
+
+    }, (
+      visitedOrder.length +
+      shortestPath.length
+    ) * 100);
+  };
+
+  // ---------------- CLEAR PATH ----------------
+
+  const clearPath = () => {
+
+    const newGrid = grid.map((row) =>
+
+      row.map((cell) => {
+
+        if (
+          cell === "visited" ||
+          cell === "path"
+        ) {
+          return "empty";
+        }
+
+        return cell;
+      })
+    );
+
+    setGrid(newGrid);
+  };
+
+  // ---------------- RESET GRID ----------------
+
+  const resetGrid = () => {
+
+    const emptyGrid = Array(rows)
+      .fill()
+      .map(() =>
+        Array(cols).fill("empty")
+      );
+
+    setGrid(emptyGrid);
+  };
+
+  // ---------------- UI ----------------
+
   return (
     <div>
 
-        <button onClick={runBFS}>Find Path</button>
+      {/* CONTROL BUTTONS */}
+
+      <button
+        onClick={runBFS}
+        disabled={isAnimating}
+      >
+        Find Path
+      </button>
+
+      <button
+        onClick={clearPath}
+        disabled={isAnimating}
+        style={{ marginLeft: "10px" }}
+      >
+        Clear Path
+      </button>
+
+      <button
+        onClick={resetGrid}
+        disabled={isAnimating}
+        style={{ marginLeft: "10px" }}
+      >
+        Reset Grid
+      </button>
+
+      {/* GRID */}
+
       {grid.map((row, i) => (
-        <div className="row" key={i}>
+
+        <div
+          className="row"
+          key={i}
+        >
+
           {row.map((cell, j) => {
+
             let color = "white";
-            if (cell === "wall") color = "black";
-            if (cell === "start") color = "green";
-            if (cell === "end") color = "red";
-            if (cell === "path") color = "yellow";
-             //if (cell === "visited") color = "blue";
+
+            if (cell === "wall") {
+              color = "black";
+            }
+
+            if (cell === "start") {
+              color = "green";
+            }
+
+            if (cell === "end") {
+              color = "red";
+            }
+
+            if (cell === "visited") {
+              color = "blue";
+            }
+
+            if (cell === "path") {
+              color = "yellow";
+            }
 
             return (
               <div
                 key={j}
                 className="cell"
-                onClick={() => handleClick(i, j)}
-                onDoubleClick={() => setStart(i, j)}
+                onClick={() =>
+                  handleClick(i, j)
+                }
+                onDoubleClick={() =>
+                  setStart(i, j)
+                }
                 onContextMenu={(e) => {
                   e.preventDefault();
                   setEnd(i, j);
                 }}
-                style={{ backgroundColor: color }}
+                style={{
+                  backgroundColor: color,
+                }}
               ></div>
             );
           })}
+
         </div>
       ))}
+
     </div>
   );
 }
