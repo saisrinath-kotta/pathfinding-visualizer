@@ -51,9 +51,11 @@ function App() {
 
   const [nodes, setNodes] =
     useState([]);
-
+  const [graphPath, setGraphPath]
+  = useState([]);
   const [edges, setEdges] =
     useState([]);
+  
 
   // ---------------- GENERATE GRAPH ----------------
 
@@ -87,6 +89,7 @@ function App() {
       buildAdjacencyList(parsedEdges);
 
     resetGraphStyles();
+    setGraphPath([]);
 
     const result =
       bfsGraph(
@@ -94,6 +97,7 @@ function App() {
         startNode,
         endNode
       );
+
 
     animateGraph(
       result,
@@ -117,6 +121,7 @@ function App() {
       buildAdjacencyList(parsedEdges);
 
     resetGraphStyles();
+    setGraphPath([]);
 
     const result =
       dfsGraph(
@@ -124,6 +129,7 @@ function App() {
         startNode,
         endNode
       );
+    
 
     animateGraph(
       result,
@@ -139,6 +145,9 @@ function App() {
     startNode,
     endNode
   ) {
+    setGraphPath(
+  result.shortestPath
+);
 
     updateNodeType(
       startNode,
@@ -314,6 +323,22 @@ function App() {
                   nodes={nodes}
                   edges={edges}
                 />
+                {/* PATH OUTPUT */}
+
+                {graphPath.length > 0 && (
+
+                  <div className="path-output">
+
+                    <h3>
+                      Shortest Path
+                    </h3>
+
+                    <p>
+                      {graphPath.join(" → ")}
+                    </p>
+
+                  </div>
+                )}
 
               </div>
 
