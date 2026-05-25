@@ -1,7 +1,7 @@
 function Sidebar({
 
-  mode,
-  setMode
+  selectedPage,
+  setSelectedPage
 
 }) {
 
@@ -9,17 +9,17 @@ function Sidebar({
 
     <div className="sidebar">
 
-      <h2>Controls</h2>
+      {/* VISUALIZERS */}
 
-      {/* MODE SELECTOR */}
+      <div className="card">
 
-      <div className="section">
-
-        <p>Select Mode</p>
+        <h2>
+          Visualizers
+        </h2>
 
         <button
           onClick={() =>
-            setMode("grid")
+            setSelectedPage("grid")
           }
         >
           Grid Visualizer
@@ -27,48 +27,54 @@ function Sidebar({
 
         <button
           onClick={() =>
-            setMode("graph")
+            setSelectedPage("graph")
           }
+          className="secondary-btn"
         >
           Graph Visualizer
         </button>
 
       </div>
 
-      {/* LEGEND */}
+      {/* ALGORITHMS */}
 
-      <div className="section">
+      <div className="card">
 
-        <h3>Legend</h3>
+        <h2>
+          Algorithms
+        </h2>
 
-        <p>🟩 Start Node</p>
+        <button
+          onClick={() =>
+            setSelectedPage("bfs")
+          }
+        >
+          BFS Theory
+        </button>
 
-        <p>🟥 End Node</p>
-
-        <p>⬛ Wall</p>
-
-        <p>🟦 Visited</p>
-
-        <p>🟨 Shortest Path</p>
+        <button
+          onClick={() =>
+            setSelectedPage("dfs")
+          }
+          className="secondary-btn"
+        >
+          DFS Theory
+        </button>
 
       </div>
 
-      {/* INSTRUCTIONS */}
+      {/* ABOUT */}
 
-      <div className="section">
+      <div className="card">
 
-        <h3>Instructions</h3>
-
-        <p>
-          Single Click → Wall
-        </p>
+        <h2>
+          About Project
+        </h2>
 
         <p>
-          Double Click → Start
-        </p>
-
-        <p>
-          Right Click → End
+          Interactive Pathfinding
+          Visualizer for Grid and
+          Graph Structures.
         </p>
 
       </div>

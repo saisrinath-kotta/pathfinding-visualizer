@@ -138,6 +138,8 @@ function Grid() {
     );
   };
 
+  
+
   // ---------------- VISUALIZATION ----------------
 
   const animateVisited = (
@@ -248,92 +250,164 @@ function Grid() {
   // ---------------- UI ----------------
 
   return (
-    <div>
 
-      {/* CONTROL BUTTONS */}
+  <div className="grid-layout">
 
-      <button
-        onClick={runBFS}
-        disabled={isAnimating}
-      >
-        Find Path
-      </button>
+    {/* LEFT PANEL */}
 
-      <button
-        onClick={clearPath}
-        disabled={isAnimating}
-        style={{ marginLeft: "10px" }}
-      >
-        Clear Path
-      </button>
+    <div className="grid-sidebar">
 
-      <button
-        onClick={resetGrid}
-        disabled={isAnimating}
-        style={{ marginLeft: "10px" }}
-      >
-        Reset Grid
-      </button>
+      <div className="grid-info-card">
+
+        <h2>
+          Grid Visualizer
+        </h2>
+
+        <div className="instructions">
+
+          <h3>
+            Instructions
+          </h3>
+
+          <p>
+            Single Click → Add Wall
+          </p>
+
+          <p>
+            Double Click → Set Start
+          </p>
+
+          <p>
+            Right Click → Set End
+          </p>
+
+        </div>
+
+        <div className="legend">
+
+          <h3>
+            Legend
+          </h3>
+
+          <p>🟩 Start Node</p>
+
+          <p>🟥 End Node</p>
+
+          <p>⬛ Wall</p>
+
+          <p>🟦 Visited Node</p>
+
+          <p>🟨 Shortest Path</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    {/* RIGHT PANEL */}
+
+    <div className="grid-main">
+
+      {/* BUTTONS */}
+
+      <div className="grid-buttons">
+
+        <button
+          onClick={runBFS}
+          disabled={isAnimating}
+        >
+          Find Path
+        </button>
+
+        <button
+          onClick={clearPath}
+          disabled={isAnimating}
+        >
+          Clear Path
+        </button>
+
+        <button
+          onClick={resetGrid}
+          disabled={isAnimating}
+        >
+          Reset Grid
+        </button>
+
+      </div>
 
       {/* GRID */}
 
-      {grid.map((row, i) => (
+      <div className="grid-container">
 
-        <div
-          className="row"
-          key={i}
-        >
+        {grid.map((row, i) => (
 
-          {row.map((cell, j) => {
+          <div
+            className="row"
+            key={i}
+          >
 
-            let color = "white";
+            {row.map((cell, j) => {
 
-            if (cell === "wall") {
-              color = "black";
-            }
+              let color = "white";
 
-            if (cell === "start") {
-              color = "green";
-            }
+              if (cell === "wall") {
+                color = "black";
+              }
 
-            if (cell === "end") {
-              color = "red";
-            }
+              if (cell === "start") {
+                color = "green";
+              }
 
-            if (cell === "visited") {
-              color = "blue";
-            }
+              if (cell === "end") {
+                color = "red";
+              }
 
-            if (cell === "path") {
-              color = "yellow";
-            }
+              if (cell === "visited") {
+                color = "blue";
+              }
 
-            return (
-              <div
-                key={j}
-                className="cell"
-                onClick={() =>
-                  handleClick(i, j)
-                }
-                onDoubleClick={() =>
-                  setStart(i, j)
-                }
-                onContextMenu={(e) => {
-                  e.preventDefault();
-                  setEnd(i, j);
-                }}
-                style={{
-                  backgroundColor: color,
-                }}
-              ></div>
-            );
-          })}
+              if (cell === "path") {
+                color = "yellow";
+              }
 
-        </div>
-      ))}
+              return (
+
+                <div
+                  key={j}
+                  className="cell"
+
+                  onClick={() =>
+                    handleClick(i, j)
+                  }
+
+                  onDoubleClick={() =>
+                    setStart(i, j)
+                  }
+
+                  onContextMenu={(e) => {
+
+                    e.preventDefault();
+
+                    setEnd(i, j);
+                  }}
+
+                  style={{
+                    backgroundColor: color,
+                  }}
+                ></div>
+              );
+            })}
+
+          </div>
+        ))}
+
+      </div>
 
     </div>
-  );
+
+  </div>
+);
 }
 
 export default Grid;

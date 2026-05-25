@@ -1,205 +1,158 @@
 import { useState } from "react";
 
 import "./App.css";
+import "./layout.css";
 
-import { bfs } from "./algorithms/bfs";
-import { bfsGraph } from "./algorithms/bfsGraph";
+// ---------------- COMPONENTS ----------------
+
+import Navbar from "./components/Navbar/Navbar";
+
+import Sidebar from "./components/Sidebar/Sidebar";
 
 import Grid from "./components/Grid";
 
-import GraphVisualizer from "./components/Graph/GraphVisualizer";
-
 import GraphInput from "./components/Graph/GraphInput";
 
-import { parseGraphInput } from "./utils/parseGraphInput";
+import GraphVisualizer from "./components/Graph/GraphVisualizer";
+
+import BFSInfo from "./components/Theory/BFSInfo";
+
+import DFSInfo from "./components/Theory/DFSInfo";
+
+// ---------------- ALGORITHMS ----------------
+
+import { bfsGraph }
+from "./algorithms/bfsGraph";
+
+import { dfsGraph }
+from "./algorithms/dfsGraph";
+
+// ---------------- HELPERS ----------------
 
 import {
   generateGraph,
   buildAdjacencyList
-} from "./utils/graphHelpers";
+}
+from "./utils/graphHelpers";
 
-import { dfsGraph } from "./algorithms/dfsGraph";
+import { parseGraphInput }
+from "./utils/parseGraphInput";
 
 function App() {
 
-  // ---------------- GRID STATES ----------------
+  // ---------------- PAGE STATE ----------------
 
-  const [path, setPath] = useState([]);
+  const [
+    selectedPage,
+    setSelectedPage
+  ] = useState("grid");
 
-  const grid = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0]
-  ];
+  // ---------------- GRAPH STATE ----------------
 
-  const start = { row: 0, col: 0 };
+  const [nodes, setNodes] =
+    useState([]);
 
-  const end = { row: 2, col: 2 };
+  const [edges, setEdges] =
+    useState([]);
 
-  function runBFS() {
-
-    const result = bfs(grid, start, end);
-
-    setPath(result);
-  }
-
-  // ---------------- GRAPH STATES ----------------
-
-  const [nodes, setNodes] = useState([]);
-
-  const [edges, setEdges] = useState([]);
+  // ---------------- GENERATE GRAPH ----------------
 
   function handleGenerateGraph(input) {
 
-  const parsedEdges =
-    parseGraphInput(input);
+    const parsedEdges =
+      parseGraphInput(input);
 
-  const {
-    nodes,
-    edges
-  } = generateGraph(parsedEdges);
+    const {
+      nodes,
+      edges
+    } = generateGraph(parsedEdges);
 
-  setNodes(nodes);
+    setNodes(nodes);
 
-  setEdges(edges);
-}
-
-function handleRunGraphBFS(
-  input,
-  startNode,
-  endNode
-) {
-
-  const parsedEdges =
-    parseGraphInput(input);
-
-  const graph =
-    buildAdjacencyList(parsedEdges);
-  resetGraphStyles();
-  const result =
-    bfsGraph(
-      graph,
-      startNode,
-      endNode
-    );
-
-  console.log(result);
-  updateNodeType(
-  startNode,
-  "start"
-);
-
-updateNodeType(
-  endNode,
-  "end"
-);
-
-result.visitedOrder.forEach(
-  (nodeId, index) => {
-
-    setTimeout(() => {
-
-      if (
-        nodeId !== startNode &&
-        nodeId !== endNode
-      ) {
-
-        updateNodeType(
-          nodeId,
-          "visited"
-        );
-      }
-
-    }, index * 500);
+    setEdges(edges);
   }
-);
 
-setTimeout(() => {
+  // ---------------- RUN BFS ----------------
 
-  result.shortestPath.forEach(
-    (nodeId, index) => {
+  function handleRunGraphBFS(
+    input,
+    startNode,
+    endNode
+  ) {
 
-      setTimeout(() => {
+    const parsedEdges =
+      parseGraphInput(input);
 
-        if (
-          nodeId !== startNode &&
-          nodeId !== endNode
-        ) {
+    const graph =
+      buildAdjacencyList(parsedEdges);
 
-          updateNodeType(
-            nodeId,
-            "path"
-          );
-        }
+    resetGraphStyles();
 
-      }, index * 500);
+    const result =
+      bfsGraph(
+        graph,
+        startNode,
+        endNode
+      );
 
-    }
-  );
-
-}, result.visitedOrder.length * 500);
-}
-
-function handleRunGraphDFS(
-  input,
-  startNode,
-  endNode
-) {
-
-  const parsedEdges =
-    parseGraphInput(input);
-
-  const graph =
-    buildAdjacencyList(parsedEdges);
-
-  resetGraphStyles();
-
-  const result =
-    dfsGraph(
-      graph,
+    animateGraph(
+      result,
       startNode,
       endNode
     );
+  }
 
-  console.log(result);
+  // ---------------- RUN DFS ----------------
 
-  updateNodeType(
+  function handleRunGraphDFS(
+    input,
     startNode,
-    "start"
-  );
+    endNode
+  ) {
 
-  updateNodeType(
-    endNode,
-    "end"
-  );
+    const parsedEdges =
+      parseGraphInput(input);
 
-  // VISITED ANIMATION
+    const graph =
+      buildAdjacencyList(parsedEdges);
 
-  result.visitedOrder.forEach(
-    (nodeId, index) => {
+    resetGraphStyles();
 
-      setTimeout(() => {
+    const result =
+      dfsGraph(
+        graph,
+        startNode,
+        endNode
+      );
 
-        if (
-          nodeId !== startNode &&
-          nodeId !== endNode
-        ) {
+    animateGraph(
+      result,
+      startNode,
+      endNode
+    );
+  }
 
-          updateNodeType(
-            nodeId,
-            "visited"
-          );
-        }
+  // ---------------- GRAPH ANIMATION ----------------
 
-      }, index * 500);
-    }
-  );
+  function animateGraph(
+    result,
+    startNode,
+    endNode
+  ) {
 
-  // PATH ANIMATION
+    updateNodeType(
+      startNode,
+      "start"
+    );
 
-  setTimeout(() => {
+    updateNodeType(
+      endNode,
+      "end"
+    );
 
-    result.shortestPath.forEach(
+    // VISITED ANIMATION
+
+    result.visitedOrder.forEach(
       (nodeId, index) => {
 
         setTimeout(() => {
@@ -211,92 +164,181 @@ function handleRunGraphDFS(
 
             updateNodeType(
               nodeId,
-              "path"
+              "visited"
             );
           }
 
         }, index * 500);
-
       }
     );
 
-  }, result.visitedOrder.length * 500);
-}
+    // PATH ANIMATION
 
-function updateNodeType(
-  nodeId,
-  type
-) {
+    setTimeout(() => {
 
-  setNodes((prevNodes) =>
+      result.shortestPath.forEach(
+        (nodeId, index) => {
 
-    prevNodes.map((node) =>
+          setTimeout(() => {
 
-      node.id === nodeId
+            if (
+              nodeId !== startNode &&
+              nodeId !== endNode
+            ) {
 
-        ? {
-            ...node,
+              updateNodeType(
+                nodeId,
+                "path"
+              );
+            }
 
-            data: {
-              ...node.data,
-              type,
-            },
-          }
+          }, index * 500);
 
-        : node
-    )
-  );
-}
+        }
+      );
 
-function resetGraphStyles() {
+    }, result.visitedOrder.length * 500);
+  }
 
-  setNodes((prevNodes) =>
+  // ---------------- UPDATE NODE TYPE ----------------
 
-    prevNodes.map((node) => ({
+  function updateNodeType(
+    nodeId,
+    type
+  ) {
 
-      ...node,
+    setNodes((prevNodes) =>
 
-      data: {
+      prevNodes.map((node) =>
 
-        ...node.data,
+        node.id === nodeId
 
-        type: "normal",
-      },
-    }))
-  );
-}
+          ? {
+              ...node,
+
+              data: {
+                ...node.data,
+                type,
+              },
+            }
+
+          : node
+      )
+    );
+  }
+
+  // ---------------- RESET GRAPH ----------------
+
+  function resetGraphStyles() {
+
+    setNodes((prevNodes) =>
+
+      prevNodes.map((node) => ({
+
+        ...node,
+
+        data: {
+
+          ...node.data,
+
+          type: "normal",
+        },
+      }))
+    );
+  }
+
+  // ---------------- UI ----------------
+
   return (
-    <div style={{ textAlign: "center" }}>
 
-      <h1>Pathfinding Visualizer</h1>
+    <div className="app">
 
-      {/* ---------------- GRID VISUALIZER ---------------- */}
+      {/* NAVBAR */}
 
-      <p>
-        Click cells to create walls.
-      </p>
+      <Navbar />
 
-      <button onClick={runBFS}>
-        Find Path
-      </button>
+      {/* MAIN LAYOUT */}
 
-      <Grid
-        grid={grid}
-        path={path}
-      />
+      <div className="main-layout">
 
-      {/* ---------------- GRAPH VISUALIZER ---------------- */}
+        {/* SIDEBAR */}
 
-      <GraphInput
-  onGenerate={handleGenerateGraph}
-  onRunBFS={handleRunGraphBFS}
-  onRunDFS={handleRunGraphDFS}
-/>
+        <Sidebar
+          selectedPage={selectedPage}
+          setSelectedPage={setSelectedPage}
+        />
 
-      <GraphVisualizer
-        nodes={nodes}
-        edges={edges}
-      />
+        {/* CONTENT AREA */}
+
+        <div className="visualizer-area">
+
+          {/* GRID PAGE */}
+
+          {selectedPage === "grid" && (
+
+            <Grid />
+
+          )}
+
+          {/* GRAPH PAGE */}
+
+          {selectedPage === "graph" && (
+
+            <div className="graph-layout">
+
+              {/* GRAPH CONTROLS */}
+
+              <div className="graph-controls">
+
+                <GraphInput
+                  onGenerate={
+                    handleGenerateGraph
+                  }
+
+                  onRunBFS={
+                    handleRunGraphBFS
+                  }
+
+                  onRunDFS={
+                    handleRunGraphDFS
+                  }
+                />
+
+              </div>
+
+              {/* GRAPH VISUALIZER */}
+
+              <div className="graph-visualizer">
+
+                <GraphVisualizer
+                  nodes={nodes}
+                  edges={edges}
+                />
+
+              </div>
+
+            </div>
+          )}
+
+          {/* BFS PAGE */}
+
+          {selectedPage === "bfs" && (
+
+            <BFSInfo />
+
+          )}
+
+          {/* DFS PAGE */}
+
+          {selectedPage === "dfs" && (
+
+            <DFSInfo />
+
+          )}
+
+        </div>
+
+      </div>
 
     </div>
   );
