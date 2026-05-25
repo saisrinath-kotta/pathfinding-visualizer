@@ -74,7 +74,7 @@ function handleRunGraphBFS(
 
   const graph =
     buildAdjacencyList(parsedEdges);
-
+  resetGraphStyles();
   const result =
     bfsGraph(
       graph,
@@ -109,7 +109,7 @@ result.visitedOrder.forEach(
         );
       }
 
-    }, index * 700);
+    }, index * 500);
   }
 );
 
@@ -131,12 +131,12 @@ setTimeout(() => {
           );
         }
 
-      }, index * 700);
+      }, index * 500);
 
     }
   );
 
-}, result.visitedOrder.length * 700);
+}, result.visitedOrder.length * 500);
 }
 
 function updateNodeType(
@@ -161,6 +161,24 @@ function updateNodeType(
 
         : node
     )
+  );
+}
+
+function resetGraphStyles() {
+
+  setNodes((prevNodes) =>
+
+    prevNodes.map((node) => ({
+
+      ...node,
+
+      data: {
+
+        ...node.data,
+
+        type: "normal",
+      },
+    }))
   );
 }
   return (

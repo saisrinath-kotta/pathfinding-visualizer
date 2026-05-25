@@ -2,7 +2,7 @@ import { useState } from "react";
 
 function GraphInput({
   onGenerate,
-  onRunBFS
+  onRunBFS,
 }) {
 
   const [input, setInput] = useState("");
