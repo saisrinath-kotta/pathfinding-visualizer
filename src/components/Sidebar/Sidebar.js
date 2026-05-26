@@ -9,15 +9,38 @@ function Sidebar({
 
     <div className="sidebar">
 
+      {/* LOGO / TITLE */}
+
+      <div className="sidebar-top">
+
+        <h1>
+          Pathfinder
+        </h1>
+
+        <p>
+          Learn algorithms visually
+        </p>
+
+      </div>
+
       {/* VISUALIZERS */}
 
-      <div className="card">
+      <div className="sidebar-section">
 
         <h2>
           Visualizers
         </h2>
 
         <button
+
+          className={
+            selectedPage === "grid"
+
+              ? "sidebar-btn active-btn"
+
+              : "sidebar-btn"
+          }
+
           onClick={() =>
             setSelectedPage("grid")
           }
@@ -26,25 +49,42 @@ function Sidebar({
         </button>
 
         <button
+
+          className={
+            selectedPage === "graph"
+
+              ? "sidebar-btn active-btn"
+
+              : "sidebar-btn"
+          }
+
           onClick={() =>
             setSelectedPage("graph")
           }
-          className="secondary-btn"
         >
           Graph Visualizer
         </button>
 
       </div>
 
-      {/* ALGORITHMS */}
+      {/* THEORY */}
 
-      <div className="card">
+      <div className="sidebar-section">
 
         <h2>
-          Algorithms
+          Theory
         </h2>
 
         <button
+
+          className={
+            selectedPage === "bfs"
+
+              ? "sidebar-btn active-btn"
+
+              : "sidebar-btn"
+          }
+
           onClick={() =>
             setSelectedPage("bfs")
           }
@@ -53,10 +93,18 @@ function Sidebar({
         </button>
 
         <button
+
+          className={
+            selectedPage === "dfs"
+
+              ? "sidebar-btn active-btn"
+
+              : "sidebar-btn"
+          }
+
           onClick={() =>
             setSelectedPage("dfs")
           }
-          className="secondary-btn"
         >
           DFS Theory
         </button>
@@ -65,16 +113,17 @@ function Sidebar({
 
       {/* ABOUT */}
 
-      <div className="card">
+      <div className="sidebar-about">
 
-        <h2>
+        <h3>
           About Project
-        </h2>
+        </h3>
 
         <p>
-          Interactive Pathfinding
-          Visualizer for Grid and
-          Graph Structures.
+          Interactive educational
+          platform for visualizing
+          pathfinding and graph
+          traversal algorithms.
         </p>
 
       </div>

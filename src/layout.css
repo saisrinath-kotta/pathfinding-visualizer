@@ -1,886 +1,467 @@
+/* ================= GLOBAL & THEME BASE ================= */
 body {
-
   margin: 0;
-
-  background-color: #f8f6f1;
-
-  font-family: Arial, sans-serif;
+  background-color: #0f1115; /* Deep Cyber Obsidian */
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: #e2e8f0;
+  overflow: hidden;
 }
 
 /* APP */
-
 .app {
-
   height: 100vh;
 }
 
 /* NAVBAR */
-
 .navbar {
-
   height: 70px;
-
-  background: #dbeafe;
-
+  background: #161920;
   display: flex;
-
   align-items: center;
-
   padding-left: 30px;
-
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  border-bottom: 2px solid #262b36;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
+/* MODIFIED: Main Title Color Changed from Green to Electric Cyan/Teal */
 .navbar h1 {
-
-  color: #0369a1;
-
-  font-size: 28px;
-}
-
-/* MAIN LAYOUT */
-
-.main-layout {
-
-  display: flex;
-
-  height: calc(100vh - 70px);
-}
-
-/* SIDEBAR */
-
-.sidebar {
-
-  width: 300px;
-
-  padding: 20px;
-
-  background-color: #e0f2fe;
-
-  overflow-y: auto;
-}
-
-/* CARD */
-
-.card {
-
-  background: #fefce8;
-
-  border-radius: 18px;
-
-  padding: 20px;
-
-  margin-bottom: 20px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-.card h2 {
-
-  margin-top: 0;
-
-  color: #0f172a;
-}
-
-/* BUTTONS */
-
-.card button {
-
-  width: 100%;
-
-  padding: 12px;
-
-  border: none;
-
-  border-radius: 12px;
-
-  margin-top: 10px;
-
-  background-color: #06b6d4;
-
-  color: white;
-
-  font-size: 16px;
-
-  cursor: pointer;
-
-  transition: 0.3s;
-}
-
-.card button:hover {
-
-  transform: translateY(-2px);
-
-  background-color: #0891b2;
-}
-
-.secondary-btn {
-
-  background-color: #38bdf8 !important;
-}
-
-/* VISUALIZER AREA */
-
-.visualizer-area {
-
-  flex: 1;
-
-  padding: 25px;
-
-  overflow: auto;
-}
-
-/* LEGEND */
-
-.legend-item {
-
-  display: flex;
-
-  align-items: center;
-
-  margin-top: 12px;
-
-  color: #334155;
-}
-
-.legend-item span {
-
-  width: 18px;
-
-  height: 18px;
-
-  border-radius: 50%;
-
-  margin-right: 12px;
-}
-
-/* COLORS */
-
-.green {
-  background: #22c55e;
-}
-
-.red {
-  background: #ef4444;
-}
-
-.black {
-  background: #111827;
-}
-
-.blue {
-  background: #60a5fa;
-}
-
-.yellow {
-  background: #facc15;
-}
-
-/* GRAPH LAYOUT */
-
-.graph-layout {
-
-  display: flex;
-
-  gap: 20px;
-
-  height: 100%;
-}
-
-/* GRAPH CONTROLS */
-
-.graph-controls {
-
-  width: 320px;
-
-  background: #fefce8;
-
-  padding: 20px;
-
-  border-radius: 18px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-/* GRAPH VISUALIZER */
-
-body {
-
   margin: 0;
-
-  background-color: #f8f6f1;
-
-  font-family: Arial, sans-serif;
-}
-
-/* APP */
-
-.app {
-
-  height: 100vh;
-}
-
-/* NAVBAR */
-
-.navbar {
-
-  height: 70px;
-
-  background: #dbeafe;
-
-  display: flex;
-
-  align-items: center;
-
-  padding-left: 30px;
-
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-.navbar h1 {
-
-  color: #0369a1;
-
-  font-size: 28px;
+  color: #00e5ff; 
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.2);
 }
 
 /* MAIN LAYOUT */
-
 .main-layout {
-
   display: flex;
-
   height: calc(100vh - 70px);
 }
 
-/* SIDEBAR */
-
+/* ================= FUTURISTIC DARK SIDEBAR ================= */
 .sidebar {
-
   width: 300px;
-
   padding: 20px;
-
-  background-color: #e0f2fe;
-
+  background-color: #1e222b; /* Metallic Gunmetal */
+  border-right: 2px solid #2d3341;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
-/* CARD */
-
-.card {
-
-  background: #fefce8;
-
-  border-radius: 18px;
-
-  padding: 20px;
-
-  margin-bottom: 20px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+/* MODIFIED: Pathfinder Subtitle Color Changed from Green to Vivid Purple-Indigo */
+.sidebar-top h1 {
+  margin: 0;
+  color: #9d4edd; 
+  font-size: 28px;
+  font-weight: 800;
+  text-shadow: 0 0 10px rgba(157, 78, 221, 0.2);
 }
 
-.card h2 {
-
-  margin-top: 0;
-
-  color: #0f172a;
+.sidebar-top p {
+  color: #94a3b8;
+  margin-top: 8px;
+  line-height: 1.5;
+  font-size: 14px;
 }
 
-/* BUTTONS */
+.sidebar-section {
+  margin-top: 30px;
+}
 
-.card button {
+.sidebar-section h2 {
+  color: #64748b;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+}
 
+/* SIDEBAR NAV BUTTONS */
+.sidebar-btn {
   width: 100%;
-
   padding: 12px;
-
-  border: none;
-
-  border-radius: 12px;
-
+  border: 1px solid #2d3341;
+  border-radius: 10px;
   margin-top: 10px;
-
-  background-color: #06b6d4;
-
-  color: white;
-
-  font-size: 16px;
-
+  background-color: #262b36;
+  color: #cbd5e1;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  text-align: left;
+  padding-left: 16px;
+  box-sizing: border-box;
 }
 
-.card button:hover {
-
-  transform: translateY(-2px);
-
-  background-color: #0891b2;
+.sidebar-btn:hover {
+  background-color: #2d3341;
+  color: #00e5ff;
+  border-color: #00e5ff;
+  transform: translateX(4px);
 }
 
-.secondary-btn {
-
-  background-color: #38bdf8 !important;
+/* ACTIVE STATE SIDEBAR */
+.active-btn {
+  background-color: rgba(0, 229, 255, 0.1) !important;
+  color: #00e5ff !important;
+  border-color: #00e5ff !important;
+  box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.2);
 }
 
-/* VISUALIZER AREA */
+/* ABOUT BOX */
+.sidebar-about {
+  margin-top: auto;
+  background: #161920;
+  border: 1px solid #2d3341;
+  border-radius: 14px;
+  padding: 16px;
+}
 
+.sidebar-about h3 {
+  margin-top: 0;
+  color: #00e5ff;
+  font-size: 14px;
+}
+
+.sidebar-about p {
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* ================= VISUALIZER MAIN STAGE W/ MOVING ANIMATION ================= */
 .visualizer-area {
+  flex: 1;
+  padding: 25px;
+  overflow: auto;
+  position: relative;
+  background-color: #0f1115;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: backgroundScroll 25s linear infinite;
+}
+
+@keyframes backgroundScroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 30px 30px; }
+}
+
+/* ALGORITHM TRAVERSAL COLORS WITH PULSE ANIMATIONS */
+.green  { background: #10b981 !important; box-shadow: 0 0 14px rgba(16, 185, 129, 0.5); animation: nodePulse 0.3s ease-out; }
+.red    { background: #ef4444 !important; box-shadow: 0 0 14px rgba(239, 68, 68, 0.5); animation: nodePulse 0.3s ease-out; }
+.black  { background: #475569 !important; border: 1px solid #64748b; }
+.blue   { background: #3b82f6 !important; box-shadow: 0 0 14px rgba(59, 130, 246, 0.6); animation: nodePulse 0.4s ease-out; }
+.yellow { background: #f59e0b !important; box-shadow: 0 0 18px rgba(245, 158, 11, 0.7); animation: nodePulse 0.3s ease-out; }
+
+@keyframes nodePulse {
+  0% { transform: scale(0.6); opacity: 0.8; }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ================= HORIZONTAL SIDE-BY-SIDE LAYOUTS ================= */
+.graph-layout, .grid-layout {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: 90%;
+  align-items: stretch;
+}
+
+.graph-controls, .grid-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* CONTAINER DIVS (Premium Dark Steel Grey) */
+.graph-input-card, 
+.graph-info-card,
+.info-page,
+.grid-info-card {
+  background: #161920; 
+  border: 1px solid #262b36;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  padding: 24px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.graph-input-card:hover,
+.graph-info-card:hover,
+.grid-info-card:hover {
+  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 10px 35px rgba(0, 229, 255, 0.05);
+}
+
+/* Info Div Card Heading Colors (Vivid Amber-Gold) */
+.graph-input-card h2,
+.graph-info-card h2,
+.grid-info-card h2 {
+  margin: 0 0 15px 0;
+  color: #ffb703; /* Futuristic Amber Warning Gold */
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+.grid-info-card {
+  color: #cbd5e1; 
+  width: 280px; /* MODIFIED: Slighly slimmer side-panel card for grid info */
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= GRID WORKSPACE BUTTONS ================= */
+.grid-buttons {
+  display: flex;
+  gap: 8px; /* MODIFIED: Cleaner tighter spacing */
+  margin-bottom: 20px;
+}
+
+/* Specific individual functional button coloring for Grid Visualizer */
+.grid-buttons button:nth-child(1) { 
+  background-color: #10b981; /* GREEN for Find Path */
+  color: #0f1115;
+}
+.grid-buttons button:nth-child(1):hover { background-color: #059669; box-shadow: 0 0 12px rgba(16, 185, 129, 0.3); }
+
+.grid-buttons button:nth-child(2) { 
+  background-color: #ef4444; /* RED for Clear Path */
+  color: #ffffff;
+}
+.grid-buttons button:nth-child(2):hover { background-color: #dc2626; box-shadow: 0 0 12px rgba(239, 68, 68, 0.3); }
+
+.grid-buttons button:nth-child(3) { 
+  background-color: #3b82f6; /* BLUE for Reset Grid */
+  color: #ffffff;
+}
+.grid-buttons button:nth-child(3):hover { background-color: #2563eb; box-shadow: 0 0 12px rgba(59, 130, 246, 0.3); }
+
+/* Grid Button Global Base Rules */
+.grid-buttons button {
+  flex: 1;
+  padding: 10px; /* MODIFIED: Decreased button padding size */
+  border: none;
+  border-radius: 8px;
+  font-size: 12px; /* MODIFIED: Decreased font size for button text layout */
+  font-weight: 700;
+  cursor: pointer;
+  max-width : 15%;
+  transition: all 0.2s ease;
+}
+.grid-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+/* ================= GRAPH INPUT CONTAINER & TEXTAREAS ================= */
+.graph-input-card {
+  width: 260px; /* MODIFIED: Decreased panel size from 320px to widen stage view */
+  min-width: 260px;
+}
+
+.graph-input-card fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 12px 0;
+}
+
+.graph-input-card label {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.graph-input-card textarea {
+  width: 100%;
+  min-height: 120px; /* MODIFIED: Slightly optimized height footprint */
+  border: 1px solid #2d3341;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 14px;
+  font-family: 'Fira Code', monospace;
+  background: #0f1115;
+  color: #38bdf8;
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+.graph-input-card textarea:focus {
+  border-color: #00e5ff;
+}
+
+.graph-input-card input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #2d3341;
+  font-size: 14px;
+  background: #0f1115;
+  color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+.graph-input-card input:focus {
+  border-color: #00e5ff;
+}
+
+/* ================= GRAPH WORKSPACE ACTION BUTTONS ================= */
+.graph-buttons {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  margin-top: 4px;
+}
+
+.graph-buttons button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  color: #0f1115;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+.graph-buttons button:hover { transform: translateY(-2px); }
+
+/* Explicit unique colorful button bindings for Graph algorithm pipelines */
+.graph-buttons button:nth-child(1) { background-color: #ff70a6; color: #ffffff; } /* Neon Coral Pink */
+.graph-buttons button:nth-child(1):hover { background-color: #ff4787; box-shadow: 0 0 12px rgba(255, 112, 166, 0.3); }
+
+.graph-buttons button:nth-child(2) { background-color: #a855f7; color: #ffffff; } /* High-Tech Purple */
+.graph-buttons button:nth-child(2):hover { background-color: #9333ea; box-shadow: 0 0 12px rgba(168, 85, 247, 0.3); }
+
+.graph-buttons button:nth-child(3) { background-color: #f59e0b; color: #0f1115; } /* Cyber Gold Orange */
+.graph-buttons button:nth-child(3):hover { background-color: #d97706; box-shadow: 0 0 12px rgba(245, 158, 11, 0.3); }
+
+/* ================= GRAPH & GRID WORKSPACE BACKDROP VISUALIZERS ================= */
+.graph-info-card {
+  width: 260px; /* MODIFIED: Decreased panel size from 320px to widen stage view */
+  min-width: 260px;
+  line-height: 1.7;
+  color: #94a3b8;
+  display: flex;
+  flex-direction: column;
+}
+
+.legend-box {
+  margin-top: auto;
+  background: #0f1115;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #2d3341;
+}
+.legend-box h3 { margin-top: 0; color: #38bdf8; font-size: 14px; margin-bottom: 10px; }
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: #cbd5e1;
+}
+.legend-item:last-child { margin-bottom: 0; }
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.graph-visualizer,
+.grid-main {
 
   flex: 1;
 
-  padding: 25px;
-
-  overflow: auto;
-}
-
-/* LEGEND */
-
-.legend-item {
-
   display: flex;
 
-  align-items: center;
-
-  margin-top: 12px;
-
-  color: #334155;
-}
-
-.legend-item span {
-
-  width: 18px;
-
-  height: 18px;
-
-  border-radius: 50%;
-
-  margin-right: 12px;
-}
-
-/* COLORS */
-
-.green {
-  background: #22c55e;
-}
-
-.red {
-  background: #ef4444;
-}
-
-.black {
-  background: #111827;
-}
-
-.blue {
-  background: #60a5fa;
-}
-
-.yellow {
-  background: #facc15;
-}
-
-/* GRAPH LAYOUT */
-
-.graph-layout {
-
-  display: flex;
+  flex-direction: column;
 
   gap: 20px;
 
-  height: 100%;
+  background: transparent;
+
+  padding: 0;
+
+  min-height: 0;
 }
 
-/* GRAPH CONTROLS */
-
-.graph-controls {
-
-  width: 320px;
-
-  background: #fefce8;
-
-  padding: 20px;
-
-  border-radius: 18px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-/* GRAPH VISUALIZER */
-
-.graph-visualizer {
-
-  flex: 1;
-
-  background: #ecfeff;
-
-  border-radius: 18px;
-
-  padding: 20px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-/* ALGORITHM HEADER */
-
-.algo-header {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  cursor: pointer;
-}
-
-.algo-header span {
-
-  font-size: 24px;
-
-  color: #0369a1;
-}
-
-/* ALGORITHM CONTENT */
-
-.algo-content {
-
-  margin-top: 15px;
-
-  color: #334155;
-
-  line-height: 1.6;
-}
-
-/* THEORY PAGE */
-
-.info-page {
-
-  background: #fefce8;
-
-  padding: 30px;
-
-  border-radius: 20px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
-  color: #0f172a;
-
-  line-height: 1.8;
-}
-
-.info-page h1 {
-
-  color: #0369a1;
-}
-
-.info-page h2 {
-
-  margin-top: 30px;
-
-  color: #0f172a;
-}
-
-/* ================= GRID PAGE ================= */
-
-.grid-layout {
-
-  display: flex;
-
-  gap: 25px;
-
-  align-items: flex-start;
-}
-
-/* LEFT SIDE */
-
-.grid-sidebar {
-
-  width: 280px;
-}
-
-.grid-info-card {
-
-  background: #fefce8;
-
-  padding: 25px;
-
-  border-radius: 20px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
-  line-height: 1.8;
-
-  color: #0f172a;
-}
-
-/* RIGHT SIDE */
-
-.grid-main {
-
-  flex: 1;
-}
-
-/* BUTTON AREA */
-
-.grid-buttons {
-
-  display: flex;
-
-  gap: 15px;
-
-  margin-bottom: 25px;
-}
-
-.grid-buttons button {
-
-  padding: 12px 22px;
-
-  border: none;
-
-  border-radius: 12px;
-
-  background: #06b6d4;
-
-  color: white;
-
-  font-size: 15px;
-
-  cursor: pointer;
-
-  transition: 0.3s;
-}
-
-.grid-buttons button:hover {
-
-  transform: translateY(-2px);
-
-  background: #0891b2;
-}
-
-/* GRID CONTAINER */
-
+/* THE CONTAINER STAGE COMPONENT MODULE */
+.graph-box,
 .grid-container {
+ flex: 1;
 
-  background: #ecfeff;
+  min-height: 560px;
 
-  padding: 30px;
-
-  border-radius: 20px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
-  width: fit-content;
-}
-
-/* GRID ROW */
-
-.row {
-
-  display: flex;
-}
-
-/* GRID CELL */
-
-.cell {
-
-  width: 40px;
-
-  height: 40px;
-
-  border: 1px solid #cbd5e1;
-
-  transition: 0.2s;
-
-  cursor: pointer;
-}
-
-.cell:hover {
-
-  transform: scale(1.05);
-}
-
-/* LEGEND BOX */
-
-.legend-box {
-
-  margin-top: 25px;
-
-  background: #ecfeff;
-
-  padding: 18px;
+  background: #161920;
 
   border-radius: 16px;
 
-  border: 1px solid #bae6fd;
-}
-
-.legend-box h3 {
-
-  margin-top: 0;
-
-  color: #0369a1;
-}
-
-/* PATH OUTPUT */
-
-.path-output {
-
-  margin-top: 25px;
-
-  background: #fefce8;
-
   padding: 20px;
 
-  border-radius: 18px;
+  border: 1px solid #262b36;
 
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  overflow: hidden;
+
+  box-sizing: border-box;
 }
-
-.path-output h3 {
-
-  margin-top: 0;
-
-  color: #0369a1;
-}
-
-.path-output p {
-
-  font-size: 18px;
-
-  color: #0f172a;
-
-  word-break: break-word;
-}
-/* ALGORITHM HEADER */
-
-.algo-header {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  cursor: pointer;
-}
-
-.algo-header span {
-
-  font-size: 24px;
-
-  color: #0369a1;
-}
-
-/* ALGORITHM CONTENT */
-
-.algo-content {
-
-  margin-top: 15px;
-
-  color: #334155;
-
-  line-height: 1.6;
-}
-
-/* THEORY PAGE */
-
-.info-page {
-
-  background: #fefce8;
-
-  padding: 30px;
-
-  border-radius: 20px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
-  color: #0f172a;
-
-  line-height: 1.8;
-}
-
-.info-page h1 {
-
-  color: #0369a1;
-}
-
-.info-page h2 {
-
-  margin-top: 30px;
-
-  color: #0f172a;
-}
-
-/* ================= GRID PAGE ================= */
-
-.grid-layout {
-
-  display: flex;
-
-  gap: 25px;
-
-  align-items: flex-start;
-}
-
-/* LEFT SIDE */
-
-.grid-sidebar {
-
-  width: 280px;
-}
-
-.grid-info-card {
-
-  background: #fefce8;
-
-  padding: 25px;
-
-  border-radius: 20px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
-  line-height: 1.8;
-
-  color: #0f172a;
-}
-
-/* RIGHT SIDE */
-
-.grid-main {
-
-  flex: 1;
-}
-
-/* BUTTON AREA */
-
-.grid-buttons {
-
-  display: flex;
-
-  gap: 15px;
-
-  margin-bottom: 25px;
-}
-
-.grid-buttons button {
-
-  padding: 12px 22px;
-
-  border: none;
-
-  border-radius: 12px;
-
-  background: #06b6d4;
-
-  color: white;
-
-  font-size: 15px;
-
-  cursor: pointer;
-
-  transition: 0.3s;
-}
-
-.grid-buttons button:hover {
-
-  transform: translateY(-2px);
-
-  background: #0891b2;
-}
-
-/* GRID CONTAINER */
 
 .grid-container {
-
-  background: #ecfeff;
-
-  padding: 30px;
-
-  border-radius: 20px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
-  width: fit-content;
+  width: 100%; /* MODIFIED: Allowed complete responsive width stretching */
+  height: 100%; /* MODIFIED: Allowed complete full vertical space scaling */
+  max-height: calc(100vh - 160px); /* MODIFIED: Forces grid layout view to stretch max depth */
+  padding: 20px;
+  overflow: auto;
+  box-sizing: border-box;
 }
 
-/* GRID ROW */
-
-.row {
-
-  display: flex;
-}
-
-/* GRID CELL */
+/* ROW & CELL ARRANGEMENT */
+.row { display: flex; }
 
 .cell {
-
-  width: 40px;
-
-  height: 40px;
-
-  border: 1px solid #cbd5e1;
-
-  transition: 0.2s;
-
+  width: 32px; /* MODIFIED: Increased individual box width from 28px */
+  height: 32px; /* MODIFIED: Increased individual box height from 28px */
+  border: 1px solid #1e222b;
+  background: #111318; /* Dark grid cell backing */
+  transition: background-color 0.2s ease, transform 0.1s ease;
   cursor: pointer;
+  box-sizing: border-box;
+}
+.cell:hover { 
+  transform: scale(1.12); 
+  border-color: #00e5ff;
+  z-index: 10;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
 }
 
-.cell:hover {
-
-  transform: scale(1.05);
-}
-
-/* LEGEND BOX */
-
-.legend-box {
-
-  margin-top: 25px;
-
-  background: #ecfeff;
-
-  padding: 18px;
-
-  border-radius: 16px;
-
-  border: 1px solid #bae6fd;
-}
-
-.legend-box h3 {
-
-  margin-top: 0;
-
-  color: #0369a1;
-}
-
-/* PATH OUTPUT */
-
+/* PATH OUTPUT DISPLAY BOX */
 .path-output {
-
-  margin-top: 25px;
-
-  background: #fefce8;
-
+  background: #161920; 
   padding: 20px;
-
-  border-radius: 18px;
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  border-radius: 14px;
+  border: 1px solid #262b36;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
+.path-output h3 { margin-top: 0; color: #ffb703; font-size: 16px; margin-bottom: 8px; }
+.path-output p { font-size: 16px; color: #00e5ff; font-weight: bold; word-break: break-word; margin: 0; font-family: monospace; }
 
-.path-output h3 {
-
-  margin-top: 0;
-
-  color: #0369a1;
-}
-
-.path-output p {
-
-  font-size: 18px;
-
-  color: #0f172a;
-
-  word-break: break-word;
-}
+/* STANDALONE INFORMATIONAL PAGES */
+.info-page { color: #94a3b8; line-height: 1.8; height: 100%; overflow-y: auto; }
+.info-page h1 { color: #00e5ff; margin-top: 0; }
+.info-page h2 { margin-top: 30px; color: #e2e8f0; }

@@ -3,8 +3,8 @@ import { bfsGrid } from "../algorithms/bfsGrid";
 
 function Grid() {
 
-  const rows = 10;
-  const cols = 10;
+  const rows = 20;
+  const cols = 20;
 
   // ---------------- GRID STATE ----------------
 

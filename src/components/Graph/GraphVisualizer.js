@@ -10,24 +10,38 @@ function GraphVisualizer({
   edges,
 }) {
 
+  // ---------------- NODE STYLING ----------------
+
   const styledNodes = nodes.map((node) => {
 
     let backgroundColor = "white";
 
+    // VISITED NODE
+
     if (node.data.type === "visited") {
-      backgroundColor = "skyblue";
+
+      backgroundColor = "#60a5fa";
     }
+
+    // PATH NODE
 
     if (node.data.type === "path") {
-      backgroundColor = "yellow";
+
+      backgroundColor = "#f59e0b";
     }
+
+    // START NODE
 
     if (node.data.type === "start") {
-      backgroundColor = "green";
+
+      backgroundColor = "#22c55e";
     }
 
+    // END NODE
+
     if (node.data.type === "end") {
-      backgroundColor = "red";
+
+      backgroundColor = "#ef4444";
     }
 
     return {
@@ -36,12 +50,13 @@ function GraphVisualizer({
 
       style: {
 
-        width: 50,
-        height: 50,
+        width: 55,
+
+        height: 55,
 
         borderRadius: "50%",
 
-        border: "2px solid black",
+        border: "2px solid #334155",
 
         display: "flex",
 
@@ -53,28 +68,63 @@ function GraphVisualizer({
 
         fontWeight: "bold",
 
+        fontSize: "16px",
+
+        color: "#0f172a",
+
+        boxShadow:
+          "0 4px 10px rgba(0,0,0,0.12)",
+
         transition: "0.3s",
       },
     };
   });
 
+  // ---------------- EDGE STYLING ----------------
+
+  const styledEdges = edges.map((edge) => ({
+
+    ...edge,
+
+    style: {
+
+      stroke: "#334155",
+
+      strokeWidth: 2.5,
+    },
+  }));
+
+  // ---------------- UI ----------------
+
   return (
+
     <div
       style={{
+
         width: "100%",
+
         height: "500px",
-        border: "1px solid black",
+
+        background: "#f8fafc",
+
+        borderRadius: "18px",
+
+        border: "1px solid #cbd5e1",
+
         marginTop: "20px",
+
+        overflow: "hidden",
       }}
     >
 
       <ReactFlow
         nodes={styledNodes}
-        edges={edges}
+        edges={styledEdges}
         fitView
       >
 
         <Background />
+
         <Controls />
 
       </ReactFlow>
