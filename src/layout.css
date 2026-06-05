@@ -465,3 +465,39 @@ body {
 .info-page { color: #94a3b8; line-height: 1.8; height: 100%; overflow-y: auto; }
 .info-page h1 { color: #00e5ff; margin-top: 0; }
 .info-page h2 { margin-top: 30px; color: #e2e8f0; }
+.runtime-box {
+
+  margin-top: 20px;
+
+  padding: 18px;
+
+  border-radius: 16px;
+
+  background: rgba(255,255,255,0.85);
+
+  border: 1px solid #dbe2ea;
+
+  backdrop-filter: blur(10px);
+
+  width: fit-content;
+
+  min-width: 220px;
+}
+
+.runtime-box h3 {
+
+  margin: 0 0 10px 0;
+
+  color: #2563eb;
+}
+
+.runtime-box p {
+
+  margin: 0;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+  color: #334155;
+}

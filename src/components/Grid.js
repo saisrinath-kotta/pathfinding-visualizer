@@ -16,7 +16,8 @@ function Grid() {
 
   const [isAnimating, setIsAnimating] =
     useState(false);
-
+const [executionTime, setExecutionTime] =
+  useState(null);
   // ---------------- WALL HANDLING ----------------
 
   const handleClick = (i, j) => {
@@ -127,15 +128,32 @@ function Grid() {
 
     // RUN BFS
 
-    const result =
-      bfsGrid(grid, start, end);
+ // START TIMER
 
-    // START ANIMATION
+const startTime =
+  performance.now();
 
-    animateVisited(
-      result.visitedOrder,
-      result.shortestPath
-    );
+// RUN BFS
+
+const result =
+  bfsGrid(grid, start, end);
+
+// END TIMER
+
+const endTime =
+  performance.now();
+
+setExecutionTime(
+  (endTime - startTime)
+    .toFixed(4)
+);
+
+// START ANIMATION
+
+animateVisited(
+  result.visitedOrder,
+  result.shortestPath
+);
   };
 
   
@@ -396,18 +414,33 @@ function Grid() {
                     backgroundColor: color,
                   }}
                 ></div>
+
               );
             })}
 
           </div>
+
         ))}
+
+      </div>
+
+      {/* EXECUTION TIME */}
+
+      <div className="runtime-box">
+
+        <h3>
+          Execution Time
+        </h3>
+
+        <p>
+          {executionTime || 0} ms
+        </p>
 
       </div>
 
     </div>
 
   </div>
-);
-}
 
+);}
 export default Grid;
