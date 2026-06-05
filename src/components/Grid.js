@@ -18,6 +18,9 @@ function Grid() {
     useState(false);
 const [executionTime, setExecutionTime] =
   useState(null);
+  const [animationTime,
+  setAnimationTime]
+  = useState(null);
   // ---------------- WALL HANDLING ----------------
 
   const handleClick = (i, j) => {
@@ -167,6 +170,16 @@ animateVisited(
 
     const newGrid =
       grid.map((row) => [...row]);
+      const totalAnimationTime =
+(
+  visitedOrder.length +
+  shortestPath.length
+) * 100;
+
+setAnimationTime(
+  (totalAnimationTime / 1000)
+    .toFixed(2)
+);
 
     // VISITED ANIMATION
 
@@ -428,15 +441,21 @@ animateVisited(
 
       <div className="runtime-box">
 
-        <h3>
-          Execution Time
-        </h3>
+  <h3>
+    Performance Metrics
+  </h3>
 
-        <p>
-          {executionTime || 0} ms
-        </p>
+  <p>
+    Algorithm Time:
+    {executionTime || 0} ms
+  </p>
 
-      </div>
+  <p>
+    Animation Time:
+    {animationTime || 0} s
+  </p>
+
+</div>
 
     </div>
 
