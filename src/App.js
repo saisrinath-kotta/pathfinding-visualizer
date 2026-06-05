@@ -130,34 +130,48 @@ const [graphAnimationTime,
   // ---------------- RUN DFS ----------------
 
   function handleRunGraphDFS(
-    input,
-    startNode,
-    endNode
-  ) {
+  input,
+  startNode,
+  endNode
+) {
 
-    const parsedEdges =
-      parseGraphInput(input);
+  const parsedEdges =
+    parseGraphInput(input);
 
-    const graph =
-      buildAdjacencyList(parsedEdges);
+  const graph =
+    buildAdjacencyList(parsedEdges);
 
-    resetGraphStyles();
-    setGraphPath([]);
+  resetGraphStyles();
+  setGraphPath([]);
 
-    const result =
-      dfsGraph(
-        graph,
-        startNode,
-        endNode
-      );
-    
+  // START TIMER
 
-    animateGraph(
-      result,
+  const startTime =
+    performance.now();
+
+  const result =
+    dfsGraph(
+      graph,
       startNode,
       endNode
     );
-  }
+
+  // END TIMER
+
+  const endTime =
+    performance.now();
+
+  setGraphExecutionTime(
+    (endTime - startTime)
+      .toFixed(4)
+  );
+
+  animateGraph(
+    result,
+    startNode,
+    endNode
+  );
+}
 
   // ---------------- GRAPH ANIMATION ----------------
 
