@@ -55,6 +55,13 @@ function App() {
   = useState([]);
   const [edges, setEdges] =
     useState([]);
+    const [graphExecutionTime,
+  setGraphExecutionTime]
+  = useState(null);
+
+const [graphAnimationTime,
+  setGraphAnimationTime]
+  = useState(null);
   
 
   // ---------------- GENERATE GRAPH ----------------
@@ -77,34 +84,48 @@ function App() {
   // ---------------- RUN BFS ----------------
 
   function handleRunGraphBFS(
-    input,
-    startNode,
-    endNode
-  ) {
+  input,
+  startNode,
+  endNode
+) {
 
-    const parsedEdges =
-      parseGraphInput(input);
+  const parsedEdges =
+    parseGraphInput(input);
 
-    const graph =
-      buildAdjacencyList(parsedEdges);
+  const graph =
+    buildAdjacencyList(parsedEdges);
 
-    resetGraphStyles();
-    setGraphPath([]);
+  resetGraphStyles();
+  setGraphPath([]);
 
-    const result =
-      bfsGraph(
-        graph,
-        startNode,
-        endNode
-      );
+  // START TIMER
 
+  const startTime =
+    performance.now();
 
-    animateGraph(
-      result,
+  const result =
+    bfsGraph(
+      graph,
       startNode,
       endNode
     );
-  }
+
+  // END TIMER
+
+  const endTime =
+    performance.now();
+
+  setGraphExecutionTime(
+    (endTime - startTime)
+      .toFixed(4)
+  );
+
+  animateGraph(
+    result,
+    startNode,
+    endNode
+  );
+}
 
   // ---------------- RUN DFS ----------------
 
@@ -147,6 +168,13 @@ function App() {
   ) {
     setGraphPath(
   result.shortestPath
+);
+const totalAnimationTime =
+  result.visitedOrder.length * 500;
+
+setGraphAnimationTime(
+  (totalAnimationTime / 1000)
+    .toFixed(2)
 );
 
     updateNodeType(
@@ -323,6 +351,24 @@ function App() {
                   nodes={nodes}
                   edges={edges}
                 />
+                <div className="runtime-box">
+
+  <h3>
+    Graph Performance
+  </h3>
+
+  <p>
+    Algorithm Time:
+    {graphExecutionTime || 0} ms
+  </p>
+
+  <p>
+    Animation Time:
+    {graphAnimationTime || 0} s
+  </p>
+
+</div>
+
                 {/* PATH OUTPUT */}
 
                 {graphPath.length > 0 && (
