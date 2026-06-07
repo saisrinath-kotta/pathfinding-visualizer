@@ -428,6 +428,10 @@ const totalAnimationTime =
 
       </div>
 
+      <footer className="page-footer">
+        © 2026 Pathfinding Visualizer. Built for clear pathfinding exploration.
+      </footer>
+
     </div>
   );
 }
