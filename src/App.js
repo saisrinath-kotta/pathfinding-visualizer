@@ -97,6 +97,8 @@ const [graphAnimationTime,
 
   resetGraphStyles();
   setGraphPath([]);
+  setGraphExecutionTime(null);
+  setGraphAnimationTime(null);
 
   // START TIMER
 
@@ -110,20 +112,17 @@ const [graphAnimationTime,
       endNode
     );
 
-  // END TIMER
-
   const endTime =
     performance.now();
-
-  setGraphExecutionTime(
-    (endTime - startTime)
-      .toFixed(4)
-  );
+  const executionDuration = (
+    endTime - startTime
+  ).toFixed(4);
 
   animateGraph(
     result,
     startNode,
-    endNode
+    endNode,
+    executionDuration
   );
 }
 
@@ -143,6 +142,8 @@ const [graphAnimationTime,
 
   resetGraphStyles();
   setGraphPath([]);
+  setGraphExecutionTime(null);
+  setGraphAnimationTime(null);
 
   // START TIMER
 
@@ -156,20 +157,17 @@ const [graphAnimationTime,
       endNode
     );
 
-  // END TIMER
-
   const endTime =
     performance.now();
-
-  setGraphExecutionTime(
-    (endTime - startTime)
-      .toFixed(4)
-  );
+  const executionDuration = (
+    endTime - startTime
+  ).toFixed(4);
 
   animateGraph(
     result,
     startNode,
-    endNode
+    endNode,
+    executionDuration
   );
 }
 
@@ -178,18 +176,15 @@ const [graphAnimationTime,
   function animateGraph(
     result,
     startNode,
-    endNode
+    endNode,
+    executionDuration
   ) {
     setGraphPath(
   result.shortestPath
 );
 const totalAnimationTime =
-  result.visitedOrder.length * 500;
-
-setGraphAnimationTime(
-  (totalAnimationTime / 1000)
-    .toFixed(2)
-);
+  (result.visitedOrder.length +
+    result.shortestPath.length) * 500;
 
     updateNodeType(
       startNode,
@@ -249,6 +244,14 @@ setGraphAnimationTime(
       );
 
     }, result.visitedOrder.length * 500);
+
+    setTimeout(() => {
+      setGraphExecutionTime(executionDuration);
+      setGraphAnimationTime(
+        (totalAnimationTime / 1000)
+          .toFixed(2)
+      );
+    }, totalAnimationTime);
   }
 
   // ---------------- UPDATE NODE TYPE ----------------

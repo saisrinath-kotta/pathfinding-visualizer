@@ -128,35 +128,31 @@ const [executionTime, setExecutionTime] =
     // LOCK INTERACTION
 
     setIsAnimating(true);
+    setExecutionTime(null);
+    setAnimationTime(null);
 
     // RUN BFS
 
- // START TIMER
+    const startTime =
+      performance.now();
 
-const startTime =
-  performance.now();
+    const result =
+      bfsGrid(grid, start, end);
 
-// RUN BFS
+    const endTime =
+      performance.now();
 
-const result =
-  bfsGrid(grid, start, end);
+    const executionDuration = (
+      endTime - startTime
+    ).toFixed(4);
 
-// END TIMER
+    // START ANIMATION
 
-const endTime =
-  performance.now();
-
-setExecutionTime(
-  (endTime - startTime)
-    .toFixed(4)
-);
-
-// START ANIMATION
-
-animateVisited(
-  result.visitedOrder,
-  result.shortestPath
-);
+    animateVisited(
+      result.visitedOrder,
+      result.shortestPath,
+      executionDuration
+    );
   };
 
   
@@ -165,7 +161,8 @@ animateVisited(
 
   const animateVisited = (
     visitedOrder,
-    shortestPath
+    shortestPath,
+    executionDuration
   ) => {
 
     const newGrid =
@@ -175,11 +172,6 @@ animateVisited(
   visitedOrder.length +
   shortestPath.length
 ) * 100;
-
-setAnimationTime(
-  (totalAnimationTime / 1000)
-    .toFixed(2)
-);
 
     // VISITED ANIMATION
 
@@ -234,9 +226,12 @@ setAnimationTime(
     // UNLOCK AFTER ANIMATION
 
     setTimeout(() => {
-
+      setExecutionTime(executionDuration);
+      setAnimationTime(
+        (totalAnimationTime / 1000)
+          .toFixed(2)
+      );
       setIsAnimating(false);
-
     }, (
       visitedOrder.length +
       shortestPath.length
