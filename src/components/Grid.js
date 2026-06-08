@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { bfsGrid } from "../algorithms/bfsGrid";
-
+import { dfsGrid }
+from "../algorithms/dfsGrid";
 function Grid() {
 
   const rows = 20;
@@ -138,6 +139,73 @@ const [executionTime, setExecutionTime] =
 
     const result =
       bfsGrid(grid, start, end);
+
+    const endTime =
+      performance.now();
+
+    const executionDuration = (
+      endTime - startTime
+    ).toFixed(4);
+
+    // START ANIMATION
+
+    animateVisited(
+      result.visitedOrder,
+      result.shortestPath,
+      executionDuration
+    );
+  };
+  const runDFS = () => {
+
+    let start = null;
+    let end = null;
+
+    // FIND START + END
+
+    for (let i = 0; i < rows; i++) {
+
+      for (let j = 0; j < cols; j++) {
+
+        if (grid[i][j] === "start") {
+          start = [i, j];
+        }
+
+        if (grid[i][j] === "end") {
+          end = [i, j];
+        }
+      }
+    }
+
+    // VALIDATION
+
+    if (!start || !end) {
+
+      alert("Set start and end first!");
+
+      return;
+    }
+
+    // CLEAR OLD PATH
+
+    clearPath();
+
+    // LOCK INTERACTION
+
+    setIsAnimating(true);
+    setExecutionTime(null);
+    setAnimationTime(null);
+
+    // RUN BFS
+
+    const startTime =
+      performance.now();
+
+   const result =
+  dfsGrid(
+    grid,
+    start,
+    end
+  );
 
     const endTime =
       performance.now();
@@ -340,11 +408,18 @@ const [executionTime, setExecutionTime] =
       <div className="grid-buttons">
 
         <button
-          onClick={runBFS}
-          disabled={isAnimating}
-        >
-          Find Path
-        </button>
+  onClick={runBFS}
+  disabled={isAnimating}
+>
+  Run BFS
+</button>
+
+<button
+  onClick={runDFS}
+  disabled={isAnimating}
+>
+  Run DFS
+</button>
 
         <button
           onClick={clearPath}
