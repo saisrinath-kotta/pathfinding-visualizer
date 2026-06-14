@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { bfsGrid } from "../algorithms/bfsGrid";
 import { dfsGrid }
-from "../algorithms/dfsGrid";
+  from "../algorithms/dfsGrid";
 function Grid() {
 
   const rows = 20;
@@ -17,11 +17,11 @@ function Grid() {
 
   const [isAnimating, setIsAnimating] =
     useState(false);
-const [executionTime, setExecutionTime] =
-  useState(null);
+  const [executionTime, setExecutionTime] =
+    useState(null);
   const [animationTime,
-  setAnimationTime]
-  = useState(null);
+    setAnimationTime]
+    = useState(null);
   // ---------------- WALL HANDLING ----------------
 
   const handleClick = (i, j) => {
@@ -200,12 +200,12 @@ const [executionTime, setExecutionTime] =
     const startTime =
       performance.now();
 
-   const result =
-  dfsGrid(
-    grid,
-    start,
-    end
-  );
+    const result =
+      dfsGrid(
+        grid,
+        start,
+        end
+      );
 
     const endTime =
       performance.now();
@@ -223,7 +223,7 @@ const [executionTime, setExecutionTime] =
     );
   };
 
-  
+
 
   // ---------------- VISUALIZATION ----------------
 
@@ -235,11 +235,11 @@ const [executionTime, setExecutionTime] =
 
     const newGrid =
       grid.map((row) => [...row]);
-      const totalAnimationTime =
-(
-  visitedOrder.length +
-  shortestPath.length
-) * 100;
+    const totalAnimationTime =
+      (
+        visitedOrder.length +
+        shortestPath.length
+      ) * 100;
 
     // VISITED ANIMATION
 
@@ -345,191 +345,192 @@ const [executionTime, setExecutionTime] =
 
   return (
 
-  <div className="grid-layout">
+    <div className="grid-layout">
 
-    {/* LEFT PANEL */}
+      {/* LEFT PANEL */}
 
-    <div className="grid-sidebar">
+      <div className="grid-sidebar">
 
-      <div className="grid-info-card">
+        <div className="grid-info-card">
 
-        <h2>
-          Grid Visualizer
-        </h2>
+          <h2>
+            Grid Visualizer
+          </h2>
 
-        <div className="instructions">
+          <div className="instructions">
 
-          <h3>
-            Instructions
-          </h3>
+            <h3>
+              Instructions
+            </h3>
 
-          <p>
-            Single Click → Add Wall
-          </p>
+            <p>
+              Single Click → Add Wall
+            </p>
 
-          <p>
-            Double Click → Set Start
-          </p>
+            <p>
+              Double Click → Set Start
+            </p>
 
-          <p>
-            Right Click → Set End
-          </p>
-
-        </div>
-
-        <div className="legend">
-
-          <h3>
-            Legend
-          </h3>
-
-          <p>🟩 Start Node</p>
-
-          <p>🟥 End Node</p>
-
-          <p>⬛ Wall</p>
-
-          <p>🟦 Visited Node</p>
-
-          <p>🟨 Shortest Path</p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-    {/* RIGHT PANEL */}
-
-    <div className="grid-main">
-
-      {/* BUTTONS */}
-
-      <div className="grid-buttons">
-
-        <button
-  onClick={runBFS}
-  disabled={isAnimating}
->
-  Run BFS
-</button>
-
-<button
-  onClick={runDFS}
-  disabled={isAnimating}
->
-  Run DFS
-</button>
-
-        <button
-          onClick={clearPath}
-          disabled={isAnimating}
-        >
-          Clear Path
-        </button>
-
-        <button
-          onClick={resetGrid}
-          disabled={isAnimating}
-        >
-          Reset Grid
-        </button>
-
-      </div>
-
-      {/* GRID */}
-
-      <div className="grid-container">
-
-        {grid.map((row, i) => (
-
-          <div
-            className="row"
-            key={i}
-          >
-
-            {row.map((cell, j) => {
-
-              let color = "white";
-
-              if (cell === "wall") {
-                color = "black";
-              }
-
-              if (cell === "start") {
-                color = "green";
-              }
-
-              if (cell === "end") {
-                color = "red";
-              }
-
-              if (cell === "visited") {
-                color = "blue";
-              }
-
-              if (cell === "path") {
-                color = "yellow";
-              }
-
-              return (
-
-                <div
-                  key={j}
-                  className="cell"
-
-                  onClick={() =>
-                    handleClick(i, j)
-                  }
-
-                  onDoubleClick={() =>
-                    setStart(i, j)
-                  }
-
-                  onContextMenu={(e) => {
-
-                    e.preventDefault();
-
-                    setEnd(i, j);
-                  }}
-
-                  style={{
-                    backgroundColor: color,
-                  }}
-                ></div>
-
-              );
-            })}
+            <p>
+              Right Click → Set End
+            </p>
 
           </div>
 
-        ))}
+          <div className="legend">
+
+            <h3>
+              Legend
+            </h3>
+
+            <p>🟩 Start Node</p>
+
+            <p>🟥 End Node</p>
+
+            <p>⬛ Wall</p>
+
+            <p>🟦 Visited Node</p>
+
+            <p>🟨 Shortest Path</p>
+
+          </div>
+
+        </div>
 
       </div>
 
-      {/* EXECUTION TIME */}
+      {/* RIGHT PANEL */}
 
-      <div className="runtime-box">
+      <div className="grid-main">
 
-  <h3>
-    Performance Metrics
-  </h3>
+        {/* BUTTONS */}
 
-  <p>
-    Algorithm Time:
-    {executionTime || 0} ms
-  </p>
+        <div className="grid-buttons">
 
-  <p>
-    Animation Time:
-    {animationTime || 0} s
-  </p>
+          <button
+            onClick={runBFS}
+            disabled={isAnimating}
+          >
+            Run BFS
+          </button>
 
-</div>
+          <button
+            onClick={runDFS}
+            disabled={isAnimating}
+          >
+            Run DFS
+          </button>
+
+          <button
+            onClick={clearPath}
+            disabled={isAnimating}
+          >
+            Clear Path
+          </button>
+
+          <button
+            onClick={resetGrid}
+            disabled={isAnimating}
+          >
+            Reset Grid
+          </button>
+
+        </div>
+
+        {/* GRID */}
+
+        <div className="grid-container">
+
+          {grid.map((row, i) => (
+
+            <div
+              className="row"
+              key={i}
+            >
+
+              {row.map((cell, j) => {
+
+                let color = "white";
+
+                if (cell === "wall") {
+                  color = "black";
+                }
+
+                if (cell === "start") {
+                  color = "green";
+                }
+
+                if (cell === "end") {
+                  color = "red";
+                }
+
+                if (cell === "visited") {
+                  color = "blue";
+                }
+
+                if (cell === "path") {
+                  color = "yellow";
+                }
+
+                return (
+
+                  <div
+                    key={j}
+                    className="cell"
+
+                    onClick={() =>
+                      handleClick(i, j)
+                    }
+
+                    onDoubleClick={() =>
+                      setStart(i, j)
+                    }
+
+                    onContextMenu={(e) => {
+
+                      e.preventDefault();
+
+                      setEnd(i, j);
+                    }}
+
+                    style={{
+                      backgroundColor: color,
+                    }}
+                  ></div>
+
+                );
+              })}
+
+            </div>
+
+          ))}
+
+        </div>
+
+        {/* EXECUTION TIME */}
+
+        <div className="runtime-box">
+
+          <h3>
+            Performance Metrics
+          </h3>
+
+          <p>
+            Algorithm Time:
+            {executionTime || 0} ms
+          </p>
+
+          <p>
+            Animation Time:
+            {animationTime || 0} s
+          </p>
+
+        </div>
+
+      </div>
 
     </div>
 
-  </div>
-
-);}
+  );
+}
 export default Grid;

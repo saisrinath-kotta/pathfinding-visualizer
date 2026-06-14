@@ -1,17 +1,19 @@
 /* ================= GLOBAL & THEME BASE ================= */
 body {
   margin: 0;
-  background-color: #0f1115; /* Deep Cyber Obsidian */
+  background-color: #0f1115;
+  /* Deep Cyber Obsidian */
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   color: #e2e8f0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 /* APP */
 .app {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 /* NAVBAR */
@@ -28,7 +30,7 @@ body {
 /* MODIFIED: Main Title Color Changed from Green to Electric Cyan/Teal */
 .navbar h1 {
   margin: 0;
-  color: #00e5ff; 
+  color: #00e5ff;
   font-size: 26px;
   font-weight: 800;
   letter-spacing: 1px;
@@ -37,16 +39,25 @@ body {
 
 /* MAIN LAYOUT */
 .main-layout {
+
   display: flex;
+
   flex: 1;
-  min-height: 0;
+
+  width: 100%;
+
+  min-height: calc(100vh - 70px);
+
+  overflow: hidden;
 }
 
 /* ================= FUTURISTIC DARK SIDEBAR ================= */
 .sidebar {
-  width: 300px;
+  width: 280px;
+  flex-shrink: 0;
   padding: 20px;
-  background-color: #1e222b; /* Metallic Gunmetal */
+  background-color: #1e222b;
+  /* Metallic Gunmetal */
   border-right: 2px solid #2d3341;
   overflow-y: auto;
   display: flex;
@@ -56,7 +67,7 @@ body {
 /* MODIFIED: Pathfinder Subtitle Color Changed from Green to Vivid Purple-Indigo */
 .sidebar-top h1 {
   margin: 0;
-  color: #9d4edd; 
+  color: #9d4edd;
   font-size: 28px;
   font-weight: 800;
   text-shadow: 0 0 10px rgba(157, 78, 221, 0.2);
@@ -83,11 +94,11 @@ body {
 
 /* SIDEBAR NAV BUTTONS */
 .sidebar-btn {
-  width: 100%;
-  padding: 12px;
+  width: 90%;
+  padding: 14px 18px;
   border: 1px solid #2d3341;
   border-radius: 10px;
-  margin-top: 10px;
+  margin: 10px auto 0 auto;
   background-color: #262b36;
   color: #cbd5e1;
   font-size: 15px;
@@ -116,11 +127,13 @@ body {
 
 /* ABOUT BOX */
 .sidebar-about {
-  margin-top: auto;
+  margin-top: 20px;
   background: #161920;
+  width: 88%;
   border: 1px solid #2d3341;
-  border-radius: 14px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 18px;
+  box-sizing: border-box;
 }
 
 .sidebar-about h3 {
@@ -138,12 +151,21 @@ body {
 
 /* ================= VISUALIZER MAIN STAGE W/ MOVING ANIMATION ================= */
 .visualizer-area {
+
   flex: 1;
+
+  min-width: 0;
+
+  width: 100%;
+
+  overflow: auto;
+
+  padding: 25px;
   padding: 25px;
   overflow: auto;
   position: relative;
   background-color: #0f1115;
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
   background-size: 30px 30px;
@@ -151,44 +173,89 @@ body {
 }
 
 @keyframes backgroundScroll {
-  0% { background-position: 0 0; }
-  100% { background-position: 30px 30px; }
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 30px 30px;
+  }
 }
 
 /* ALGORITHM TRAVERSAL COLORS WITH PULSE ANIMATIONS */
-.green  { background: #10b981 !important; box-shadow: 0 0 14px rgba(16, 185, 129, 0.5); animation: nodePulse 0.3s ease-out; }
-.red    { background: #ef4444 !important; box-shadow: 0 0 14px rgba(239, 68, 68, 0.5); animation: nodePulse 0.3s ease-out; }
-.black  { background: #475569 !important; border: 1px solid #64748b; }
-.blue   { background: #3b82f6 !important; box-shadow: 0 0 14px rgba(59, 130, 246, 0.6); animation: nodePulse 0.4s ease-out; }
-.yellow { background: #f59e0b !important; box-shadow: 0 0 18px rgba(245, 158, 11, 0.7); animation: nodePulse 0.3s ease-out; }
+.green {
+  background: #10b981 !important;
+  box-shadow: 0 0 14px rgba(16, 185, 129, 0.5);
+  animation: nodePulse 0.3s ease-out;
+}
+
+.red {
+  background: #ef4444 !important;
+  box-shadow: 0 0 14px rgba(239, 68, 68, 0.5);
+  animation: nodePulse 0.3s ease-out;
+}
+
+.black {
+  background: #475569 !important;
+  border: 1px solid #64748b;
+}
+
+.blue {
+  background: #3b82f6 !important;
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.6);
+  animation: nodePulse 0.4s ease-out;
+}
+
+.yellow {
+  background: #f59e0b !important;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.7);
+  animation: nodePulse 0.3s ease-out;
+}
 
 @keyframes nodePulse {
-  0% { transform: scale(0.6); opacity: 0.8; }
-  50% { transform: scale(1.15); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.6);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* ================= HORIZONTAL SIDE-BY-SIDE LAYOUTS ================= */
-.graph-layout, .grid-layout {
+.graph-layout,
+.grid-layout {
+
   display: flex;
-  flex-direction: row;
+
   gap: 20px;
-  height: 90%;
-  align-items: stretch;
+
+  width: 100%;
+
+  height: 100%;
+
+  align-items: flex-start;
 }
 
-.graph-controls, .grid-sidebar {
+.graph-controls,
+.grid-sidebar {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 /* CONTAINER DIVS (Premium Dark Steel Grey) */
-.graph-input-card, 
+.graph-input-card,
 .graph-info-card,
 .info-page,
 .grid-info-card {
-  background: #161920; 
+  background: #161920;
   border: 1px solid #262b36;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -209,16 +276,19 @@ body {
 .graph-info-card h2,
 .grid-info-card h2 {
   margin: 0 0 15px 0;
-  color: #ffb703; /* Futuristic Amber Warning Gold */
+  color: #ffb703;
+  /* Futuristic Amber Warning Gold */
   font-size: 22px;
   letter-spacing: 0.5px;
   font-weight: 700;
 }
 
 .grid-info-card {
-  color: #cbd5e1; 
-  width: 280px; /* MODIFIED: Slighly slimmer side-panel card for grid info */
-  min-width: 280px;
+  color: #cbd5e1;
+  width: 24%;
+  /* MODIFIED: Slighly slimmer side-panel card for grid info */
+  min-width: 250px;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
 }
@@ -226,49 +296,72 @@ body {
 /* ================= GRID WORKSPACE BUTTONS ================= */
 .grid-buttons {
   display: flex;
-  gap: 8px; /* MODIFIED: Cleaner tighter spacing */
+  gap: 8px;
+  /* MODIFIED: Cleaner tighter spacing */
   margin-bottom: 20px;
 }
 
 /* Specific individual functional button coloring for Grid Visualizer */
-.grid-buttons button:nth-child(1) { 
-  background-color: #10b981; /* GREEN for Find Path */
+.grid-buttons button:nth-child(1) {
+  background-color: #10b981;
+  /* GREEN for Find Path */
   color: #0f1115;
 }
-.grid-buttons button:nth-child(1):hover { background-color: #059669; box-shadow: 0 0 12px rgba(16, 185, 129, 0.3); }
 
-.grid-buttons button:nth-child(2) { 
-  background-color: #ef4444; /* RED for Clear Path */
+.grid-buttons button:nth-child(1):hover {
+  background-color: #059669;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+}
+
+.grid-buttons button:nth-child(2) {
+  background-color: #ef4444;
+  /* RED for Clear Path */
   color: #ffffff;
 }
-.grid-buttons button:nth-child(2):hover { background-color: #dc2626; box-shadow: 0 0 12px rgba(239, 68, 68, 0.3); }
 
-.grid-buttons button:nth-child(3) { 
-  background-color: #3b82f6; /* BLUE for Reset Grid */
+.grid-buttons button:nth-child(2):hover {
+  background-color: #dc2626;
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.3);
+}
+
+.grid-buttons button:nth-child(3) {
+  background-color: #3b82f6;
+  /* BLUE for Reset Grid */
   color: #ffffff;
 }
-.grid-buttons button:nth-child(3):hover { background-color: #2563eb; box-shadow: 0 0 12px rgba(59, 130, 246, 0.3); }
+
+.grid-buttons button:nth-child(3):hover {
+  background-color: #2563eb;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+}
 
 /* Grid Button Global Base Rules */
 .grid-buttons button {
   flex: 1;
-  padding: 10px; /* MODIFIED: Decreased button padding size */
+  padding: 10px;
+  /* MODIFIED: Decreased button padding size */
   border: none;
   border-radius: 8px;
-  font-size: 12px; /* MODIFIED: Decreased font size for button text layout */
+  font-size: 12px;
+  /* MODIFIED: Decreased font size for button text layout */
   font-weight: 700;
   cursor: pointer;
-  max-width : 15%;
+  max-width: 15%;
   transition: all 0.2s ease;
 }
+
 .grid-buttons button:hover {
   transform: translateY(-2px);
 }
 
 /* ================= GRAPH INPUT CONTAINER & TEXTAREAS ================= */
 .graph-input-card {
-  width: 260px; /* MODIFIED: Decreased panel size from 320px to widen stage view */
-  min-width: 260px;
+
+  width: 24%;
+
+  min-width: 250px;
+
+  max-width: 320px;
 }
 
 .graph-input-card fieldset {
@@ -289,7 +382,8 @@ body {
 
 .graph-input-card textarea {
   width: 100%;
-  min-height: 120px; /* MODIFIED: Slightly optimized height footprint */
+  min-height: 120px;
+  /* MODIFIED: Slightly optimized height footprint */
   border: 1px solid #2d3341;
   border-radius: 10px;
   padding: 14px;
@@ -302,6 +396,7 @@ body {
   resize: vertical;
   transition: border-color 0.2s;
 }
+
 .graph-input-card textarea:focus {
   border-color: #00e5ff;
 }
@@ -318,6 +413,7 @@ body {
   box-sizing: border-box;
   transition: border-color 0.2s;
 }
+
 .graph-input-card input:focus {
   border-color: #00e5ff;
 }
@@ -341,22 +437,51 @@ body {
   font-weight: 700;
   transition: all 0.2s ease;
 }
-.graph-buttons button:hover { transform: translateY(-2px); }
+
+.graph-buttons button:hover {
+  transform: translateY(-2px);
+}
 
 /* Explicit unique colorful button bindings for Graph algorithm pipelines */
-.graph-buttons button:nth-child(1) { background-color: #ff70a6; color: #ffffff; } /* Neon Coral Pink */
-.graph-buttons button:nth-child(1):hover { background-color: #ff4787; box-shadow: 0 0 12px rgba(255, 112, 166, 0.3); }
+.graph-buttons button:nth-child(1) {
+  background-color: #ff70a6;
+  color: #ffffff;
+}
 
-.graph-buttons button:nth-child(2) { background-color: #a855f7; color: #ffffff; } /* High-Tech Purple */
-.graph-buttons button:nth-child(2):hover { background-color: #9333ea; box-shadow: 0 0 12px rgba(168, 85, 247, 0.3); }
+/* Neon Coral Pink */
+.graph-buttons button:nth-child(1):hover {
+  background-color: #ff4787;
+  box-shadow: 0 0 12px rgba(255, 112, 166, 0.3);
+}
 
-.graph-buttons button:nth-child(3) { background-color: #f59e0b; color: #0f1115; } /* Cyber Gold Orange */
-.graph-buttons button:nth-child(3):hover { background-color: #d97706; box-shadow: 0 0 12px rgba(245, 158, 11, 0.3); }
+.graph-buttons button:nth-child(2) {
+  background-color: #a855f7;
+  color: #ffffff;
+}
+
+/* High-Tech Purple */
+.graph-buttons button:nth-child(2):hover {
+  background-color: #9333ea;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.3);
+}
+
+.graph-buttons button:nth-child(3) {
+  background-color: #f59e0b;
+  color: #0f1115;
+}
+
+/* Cyber Gold Orange */
+.graph-buttons button:nth-child(3):hover {
+  background-color: #d97706;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+}
 
 /* ================= GRAPH & GRID WORKSPACE BACKDROP VISUALIZERS ================= */
 .graph-info-card {
-  width: 260px; /* MODIFIED: Decreased panel size from 320px to widen stage view */
-  min-width: 260px;
+  width: 24%;
+  /* MODIFIED: Decreased panel size from 320px to widen stage view */
+  min-width: 250px;
+  max-width: 320px;
   line-height: 1.7;
   color: #94a3b8;
   display: flex;
@@ -370,7 +495,13 @@ body {
   border-radius: 10px;
   border: 1px solid #2d3341;
 }
-.legend-box h3 { margin-top: 0; color: #38bdf8; font-size: 14px; margin-bottom: 10px; }
+
+.legend-box h3 {
+  margin-top: 0;
+  color: #38bdf8;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
 
 .legend-item {
   display: flex;
@@ -380,7 +511,11 @@ body {
   margin-bottom: 8px;
   color: #cbd5e1;
 }
-.legend-item:last-child { margin-bottom: 0; }
+
+.legend-item:last-child {
+  margin-bottom: 0;
+}
+
 .legend-color {
   width: 16px;
   height: 16px;
@@ -408,9 +543,12 @@ body {
 /* THE CONTAINER STAGE COMPONENT MODULE */
 .graph-box,
 .grid-container {
- flex: 1;
+  flex: 1;
 
-  min-height: 560px;
+  min-height: 600px;
+  width: 100%;
+
+  height: 100%;
 
   background: #161920;
 
@@ -426,28 +564,36 @@ body {
 }
 
 .grid-container {
-  width: 100%; /* MODIFIED: Allowed complete responsive width stretching */
-  height: 100%; /* MODIFIED: Allowed complete full vertical space scaling */
-  max-height: calc(100vh - 160px); /* MODIFIED: Forces grid layout view to stretch max depth */
+  width: 100%;
+  /* MODIFIED: Allowed complete responsive width stretching */
+  height: 100%;
+  /* MODIFIED: Allowed complete full vertical space scaling */
+  max-height: calc(100vh - 160px);
+  /* MODIFIED: Forces grid layout view to stretch max depth */
   padding: 20px;
   overflow: auto;
   box-sizing: border-box;
 }
 
 /* ROW & CELL ARRANGEMENT */
-.row { display: flex; }
+.row {
+  display: flex;
+}
 
 .cell {
-  width: 32px; /* MODIFIED: Increased individual box width from 28px */
-  height: 32px; /* MODIFIED: Increased individual box height from 28px */
+  width: clamp(20px, 2vw, 32px);
+  height: clamp(20px, 2vw, 32px);
+  /* MODIFIED: Increased individual box height from 28px */
   border: 1px solid #1e222b;
-  background: #111318; /* Dark grid cell backing */
+  background: #111318;
+  /* Dark grid cell backing */
   transition: background-color 0.2s ease, transform 0.1s ease;
   cursor: pointer;
   box-sizing: border-box;
 }
-.cell:hover { 
-  transform: scale(1.12); 
+
+.cell:hover {
+  transform: scale(1.12);
   border-color: #00e5ff;
   z-index: 10;
   box-shadow: 0 0 8px rgba(0, 229, 255, 0.5);
@@ -455,19 +601,47 @@ body {
 
 /* PATH OUTPUT DISPLAY BOX */
 .path-output {
-  background: #161920; 
+  background: #161920;
   padding: 20px;
   border-radius: 14px;
   border: 1px solid #262b36;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-.path-output h3 { margin-top: 0; color: #ffb703; font-size: 16px; margin-bottom: 8px; }
-.path-output p { font-size: 16px; color: #00e5ff; font-weight: bold; word-break: break-word; margin: 0; font-family: monospace; }
+
+.path-output h3 {
+  margin-top: 0;
+  color: #ffb703;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.path-output p {
+  font-size: 16px;
+  color: #00e5ff;
+  font-weight: bold;
+  word-break: break-word;
+  margin: 0;
+  font-family: monospace;
+}
 
 /* STANDALONE INFORMATIONAL PAGES */
-.info-page { color: #94a3b8; line-height: 1.8; height: 100%; overflow-y: auto; }
-.info-page h1 { color: #00e5ff; margin-top: 0; }
-.info-page h2 { margin-top: 30px; color: #e2e8f0; }
+.info-page {
+  color: #94a3b8;
+  line-height: 1.8;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.info-page h1 {
+  color: #00e5ff;
+  margin-top: 0;
+}
+
+.info-page h2 {
+  margin-top: 30px;
+  color: #e2e8f0;
+}
+
 .page-footer {
   height: 52px;
   display: flex;
@@ -527,4 +701,177 @@ body {
 .runtime-box span {
   color: #f8fafc;
   font-weight: 700;
+}
+
+
+/* Tablet */
+
+@media (max-width: 1200px) {
+
+  .sidebar {
+    width: 220px;
+  }
+
+  .grid-layout,
+  .graph-layout {
+    gap: 12px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .main-layout {
+
+    flex-direction: column;
+  }
+
+  .sidebar {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border-right: none;
+  }
+
+  .graph-layout,
+  .grid-layout {
+
+    flex-direction: column;
+
+    height: auto;
+  }
+
+  .graph-input-card,
+  .graph-info-card,
+  .grid-info-card {
+
+    width: 100%;
+
+    min-width: unset;
+  }
+
+  .graph-box,
+  .grid-container {
+
+    width: 100%;
+
+    min-height: 400px;
+  }
+
+  .grid-buttons {
+
+    flex-wrap: wrap;
+  }
+
+  .grid-buttons button {
+
+    max-width: none;
+
+    flex: 1 1 100%;
+  }
+
+}
+
+@media (max-width: 1400px) {
+
+  .sidebar {
+
+    width: 240px;
+  }
+
+  .grid-info-card,
+  .graph-info-card,
+  .graph-input-card {
+
+    width: 220px;
+
+    min-width: 220px;
+  }
+
+}
+
+@media (max-width:1200px) {
+
+  .sidebar {
+
+    width: 220px;
+
+  }
+
+  .graph-layout,
+  .grid-layout {
+
+    flex-direction: column;
+
+  }
+
+  .graph-input-card,
+  .graph-info-card,
+  .grid-info-card {
+
+    width: 100%;
+
+    max-width: none;
+
+  }
+
+  .graph-box,
+  .grid-container {
+
+    width: 100%;
+
+    min-height: 500px;
+
+  }
+
+}
+
+@media(max-width:768px) {
+
+  .main-layout {
+
+    flex-direction: column;
+
+  }
+
+  .sidebar {
+
+    width: 100%;
+
+    height: auto;
+
+  }
+
+  .visualizer-area {
+
+    padding: 12px;
+
+  }
+
+}
+
+.graph-input-card,
+.graph-info-card,
+.grid-info-card {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+.page-footer {
+  height: 52px;
+  margin-top: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .sidebar-top {
+    display: none;
+  }
+
+  .sidebar {
+    justify-content: center;
+  }
 }

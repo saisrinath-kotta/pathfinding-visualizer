@@ -22,10 +22,10 @@ import DFSInfo from "./components/Theory/DFSInfo";
 // ---------------- ALGORITHMS ----------------
 
 import { bfsGraph }
-from "./algorithms/bfsGraph";
+  from "./algorithms/bfsGraph";
 
 import { dfsGraph }
-from "./algorithms/dfsGraph";
+  from "./algorithms/dfsGraph";
 
 // ---------------- HELPERS ----------------
 
@@ -33,10 +33,10 @@ import {
   generateGraph,
   buildAdjacencyList
 }
-from "./utils/graphHelpers";
+  from "./utils/graphHelpers";
 
 import { parseGraphInput }
-from "./utils/parseGraphInput";
+  from "./utils/parseGraphInput";
 
 function App() {
 
@@ -52,17 +52,17 @@ function App() {
   const [nodes, setNodes] =
     useState([]);
   const [graphPath, setGraphPath]
-  = useState([]);
+    = useState([]);
   const [edges, setEdges] =
     useState([]);
-    const [graphExecutionTime,
-  setGraphExecutionTime]
-  = useState(null);
+  const [graphExecutionTime,
+    setGraphExecutionTime]
+    = useState(null);
 
-const [graphAnimationTime,
-  setGraphAnimationTime]
-  = useState(null);
-  
+  const [graphAnimationTime,
+    setGraphAnimationTime]
+    = useState(null);
+
 
   // ---------------- GENERATE GRAPH ----------------
 
@@ -84,92 +84,92 @@ const [graphAnimationTime,
   // ---------------- RUN BFS ----------------
 
   function handleRunGraphBFS(
-  input,
-  startNode,
-  endNode
-) {
-
-  const parsedEdges =
-    parseGraphInput(input);
-
-  const graph =
-    buildAdjacencyList(parsedEdges);
-
-  resetGraphStyles();
-  setGraphPath([]);
-  setGraphExecutionTime(null);
-  setGraphAnimationTime(null);
-
-  // START TIMER
-
-  const startTime =
-    performance.now();
-
-  const result =
-    bfsGraph(
-      graph,
-      startNode,
-      endNode
-    );
-
-  const endTime =
-    performance.now();
-  const executionDuration = (
-    endTime - startTime
-  ).toFixed(4);
-
-  animateGraph(
-    result,
+    input,
     startNode,
-    endNode,
-    executionDuration
-  );
-}
+    endNode
+  ) {
+
+    const parsedEdges =
+      parseGraphInput(input);
+
+    const graph =
+      buildAdjacencyList(parsedEdges);
+
+    resetGraphStyles();
+    setGraphPath([]);
+    setGraphExecutionTime(null);
+    setGraphAnimationTime(null);
+
+    // START TIMER
+
+    const startTime =
+      performance.now();
+
+    const result =
+      bfsGraph(
+        graph,
+        startNode,
+        endNode
+      );
+
+    const endTime =
+      performance.now();
+    const executionDuration = (
+      endTime - startTime
+    ).toFixed(4);
+
+    animateGraph(
+      result,
+      startNode,
+      endNode,
+      executionDuration
+    );
+  }
 
   // ---------------- RUN DFS ----------------
 
   function handleRunGraphDFS(
-  input,
-  startNode,
-  endNode
-) {
-
-  const parsedEdges =
-    parseGraphInput(input);
-
-  const graph =
-    buildAdjacencyList(parsedEdges);
-
-  resetGraphStyles();
-  setGraphPath([]);
-  setGraphExecutionTime(null);
-  setGraphAnimationTime(null);
-
-  // START TIMER
-
-  const startTime =
-    performance.now();
-
-  const result =
-    dfsGraph(
-      graph,
-      startNode,
-      endNode
-    );
-
-  const endTime =
-    performance.now();
-  const executionDuration = (
-    endTime - startTime
-  ).toFixed(4);
-
-  animateGraph(
-    result,
+    input,
     startNode,
-    endNode,
-    executionDuration
-  );
-}
+    endNode
+  ) {
+
+    const parsedEdges =
+      parseGraphInput(input);
+
+    const graph =
+      buildAdjacencyList(parsedEdges);
+
+    resetGraphStyles();
+    setGraphPath([]);
+    setGraphExecutionTime(null);
+    setGraphAnimationTime(null);
+
+    // START TIMER
+
+    const startTime =
+      performance.now();
+
+    const result =
+      dfsGraph(
+        graph,
+        startNode,
+        endNode
+      );
+
+    const endTime =
+      performance.now();
+    const executionDuration = (
+      endTime - startTime
+    ).toFixed(4);
+
+    animateGraph(
+      result,
+      startNode,
+      endNode,
+      executionDuration
+    );
+  }
 
   // ---------------- GRAPH ANIMATION ----------------
 
@@ -180,11 +180,11 @@ const [graphAnimationTime,
     executionDuration
   ) {
     setGraphPath(
-  result.shortestPath
-);
-const totalAnimationTime =
-  (result.visitedOrder.length +
-    result.shortestPath.length) * 500;
+      result.shortestPath
+    );
+    const totalAnimationTime =
+      (result.visitedOrder.length +
+        result.shortestPath.length) * 500;
 
     updateNodeType(
       startNode,
@@ -268,13 +268,13 @@ const totalAnimationTime =
         node.id === nodeId
 
           ? {
-              ...node,
+            ...node,
 
-              data: {
-                ...node.data,
-                type,
-              },
-            }
+            data: {
+              ...node.data,
+              type,
+            },
+          }
 
           : node
       )
@@ -370,21 +370,21 @@ const totalAnimationTime =
                 />
                 <div className="runtime-box">
 
-  <h3>
-    Graph Performance
-  </h3>
+                  <h3>
+                    Graph Performance
+                  </h3>
 
-  <p>
-    Algorithm Time:
-    {graphExecutionTime || 0} ms
-  </p>
+                  <p>
+                    Algorithm Time:
+                    {graphExecutionTime || 0} ms
+                  </p>
 
-  <p>
-    Animation Time:
-    {graphAnimationTime || 0} s
-  </p>
+                  <p>
+                    Animation Time:
+                    {graphAnimationTime || 0} s
+                  </p>
 
-</div>
+                </div>
 
                 {/* PATH OUTPUT */}
 
